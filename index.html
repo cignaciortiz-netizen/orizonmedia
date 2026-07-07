@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Synchrony — Marketing Creativo Que Vende</title>
+<style>
+  :root{
+    --bg: #0a0c0e;
+    --bg-soft: #101315;
+    --card: #121618;
+    --card-border: #1f2528;
+    --teal: #2de0c2;
+    --teal-dim: rgba(45,224,194,0.12);
+    --text: #f4f6f6;
+    --text-dim: #93a0a0;
+    --text-faint: #5d6a6a;
+    --radius: 14px;
+    --maxw: 1200px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Archivo Black', 'Arial Black', sans-serif;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+    line-height:1.05;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:18px;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:'';
+    width:4px; height:4px;
+    background:var(--teal);
+    border-radius:50%;
+    display:inline-block;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--teal);
+    color:#03110d;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px rgba(45,224,194,0.35);
+  }
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--card-border);
+    color:var(--text);
+  }
+  .btn-ghost:hover{
+    border-color:var(--teal);
+    color:var(--teal);
+  }
+  .btn-link{
+    background:none;
+    padding:0;
+    border-radius:0;
+    color:var(--teal);
+    font-size:12px;
+  }
+  .btn-link:hover{ opacity:0.75; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(10,12,14,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--card-border);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:20px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+  .logo::after{
+    content:'';
+    width:6px; height:6px;
+    background:var(--teal);
+    border-radius:50%;
+    margin-left:2px;
+  }
+  .nav-links{
+    display:flex;
+    gap:34px;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{ display:flex; align-items:center; }
+  .burger{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 0 56px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.3fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(38px, 4.6vw, 58px);
+    margin-bottom:20px;
+  }
+  .hero h1 .accent{ color:var(--teal); }
+  .hero p{
+    color:var(--text-dim);
+    font-size:16px;
+    max-width:440px;
+    margin-bottom:32px;
+    line-height:1.6;
+  }
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .hero-tags-label{
+    font-size:11px;
+    color:var(--text-faint);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .hero-tags{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  .hero-tags span{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .tag-dot{
+    width:16px; height:16px;
+    border:1px solid var(--card-border);
+    border-radius:4px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:9px;
+    color:var(--teal);
+  }
+
+  /* video card */
+  .video-card{
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:linear-gradient(160deg,#0e2320,#060907 60%);
+    aspect-ratio:16/11.2;
+    border:1px solid var(--card-border);
+  }
+  .video-bg{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(45,224,194,0.18), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 80px);
+    opacity:0.9;
+  }
+  .video-figure{
+    position:absolute; bottom:0; left:50%;
+    transform:translateX(-50%);
+    width:26%;
+    height:55%;
+    background:linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.5));
+    clip-path: polygon(35% 0%, 65% 0%, 78% 100%, 22% 100%);
+    opacity:0.85;
+  }
+  .video-columns{
+    position:absolute; inset:0;
+    display:flex;
+    justify-content:space-between;
+    padding:0 8%;
+  }
+  .video-columns i{
+    width:2px;
+    background:linear-gradient(180deg, transparent, rgba(45,224,194,0.35), transparent);
+    height:100%;
+  }
+  .play-center{
+    position:absolute; top:44%; left:50%;
+    transform:translate(-50%,-50%);
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    z-index:2;
+  }
+  .play-btn{
+    width:78px; height:78px;
+    border-radius:50%;
+    border:1.5px solid var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(45,224,194,0.08);
+    cursor:pointer;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .play-btn:hover{ transform:scale(1.06); background:rgba(45,224,194,0.18); }
+  .play-btn svg{ margin-left:4px; }
+  .play-label{
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#dfeeec;
+    font-weight:600;
+  }
+  .video-controls{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent);
+    z-index:2;
+  }
+  .vc-btn{ color:#fff; opacity:0.9; cursor:pointer; }
+  .progress{
+    flex:1;
+    height:3px;
+    background:rgba(255,255,255,0.2);
+    border-radius:2px;
+    position:relative;
+  }
+  .progress::before{
+    content:'';
+    position:absolute; left:0; top:0; bottom:0;
+    width:32%;
+    background:var(--teal);
+    border-radius:2px;
+  }
+  .time{ font-size:11px; color:#cfd8d8; }
+
+  /* ---------- HERO IMAGE VISUAL (editable por link) ---------- */
+  .hero-visual{
+    border-radius:var(--radius);
+    aspect-ratio:1.5/1;
+    width:100%;
+    min-height:320px;
+    max-width:100%;
+  }
+  .hero-ph-1{ background:linear-gradient(150deg,#16302b,#0a0c0e 70%); }
+  body.edit-mode .hero-visual{
+    resize:both;
+    overflow:hidden;
+    min-width:220px;
+    min-height:200px;
+  }
+  body.edit-mode .hero-visual::after{
+    content:'⤡';
+    position:absolute;
+    right:6px; bottom:6px;
+    width:20px; height:20px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(45,224,194,0.85);
+    color:#03110d;
+    font-size:12px;
+    border-radius:5px;
+    z-index:6;
+    pointer-events:none;
+  }
+  @media(max-width:900px){
+    .hero-visual{ width:100% !important; height:auto !important; aspect-ratio:1.5/1 !important; }
+  }
+
+  /* ---------- PHONE CHAIN VISUAL ---------- */
+  .phone-chain{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px;
+    padding:20px 6px 40px;
+  }
+  .phone{
+    position:relative;
+    flex:1;
+    aspect-ratio:9/17;
+    background:linear-gradient(160deg,#161b1d,#0a0d0e 70%);
+    border:1px solid var(--card-border);
+    border-radius:22px;
+    padding:14px 11px;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.6);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    overflow:hidden;
+  }
+  .phone::before{
+    content:'';
+    position:absolute; top:8px; left:50%;
+    transform:translateX(-50%);
+    width:34px; height:5px;
+    background:#000;
+    border-radius:6px;
+    opacity:0.5;
+  }
+  .phone-icon{
+    width:26px; height:26px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(45,224,194,0.12);
+    color:var(--teal);
+    font-size:14px;
+    margin-top:10px;
+  }
+  .phone-bar{
+    height:9px;
+    border-radius:5px;
+    background:rgba(255,255,255,0.08);
+  }
+  .phone-bar.short{ width:55%; }
+  .phone-bar.accent{ background:var(--teal); width:65%; height:16px; border-radius:6px; }
+  .phone-figure{
+    flex:1;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(45,224,194,0.15), rgba(0,0,0,0.3));
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .phone-figure .silhouette{
+    width:38%; height:80%;
+    background:linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+    clip-path: polygon(35% 0%, 65% 0%, 78% 100%, 22% 100%);
+  }
+  .phone-chart{
+    flex:1;
+    position:relative;
+    display:flex; align-items:flex-end; gap:3px;
+    padding:8px 4px;
+  }
+  .phone-chart span{
+    flex:1;
+    background:var(--teal);
+    border-radius:2px 2px 0 0;
+    opacity:0.85;
+  }
+  .phone-chat{
+    flex:1;
+    display:flex; flex-direction:column; justify-content:flex-end; gap:8px;
+  }
+  .chat-bubble{
+    max-width:70%;
+    padding:8px 10px;
+    border-radius:10px;
+    font-size:9px;
+    background:rgba(255,255,255,0.08);
+    color:var(--text-dim);
+  }
+  .chat-bubble.mine{
+    align-self:flex-end;
+    background:var(--teal);
+    color:#03110d;
+    font-weight:700;
+  }
+  .phone-dots{
+    display:flex; gap:4px; align-items:center; margin-left:auto;
+    color:var(--text-faint);
+    font-size:10px;
+  }
+  .phone-glow{
+    position:absolute;
+    bottom:-30px; left:50%;
+    transform:translateX(-50%);
+    width:70%; height:16px;
+    background:radial-gradient(ellipse, rgba(45,224,194,0.5), transparent 70%);
+    filter:blur(4px);
+  }
+  @media(max-width:640px){
+    .phone-chain{ gap:8px; }
+  }
+
+  .floating-cta{
+    position:fixed;
+    right:28px;
+    bottom:34%;
+    width:64px; height:64px;
+    border-radius:50%;
+    background:var(--teal);
+    color:#04140f;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    box-shadow:0 10px 30px rgba(45,224,194,0.35);
+    z-index:60;
+    cursor:pointer;
+    gap:4px;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{
+    border-top:1px solid var(--card-border);
+    border-bottom:1px solid var(--card-border);
+    padding:38px 0;
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+  }
+  .stat{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:0 28px;
+    border-right:1px solid var(--card-border);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-icon{
+    width:52px; height:52px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:1px solid var(--card-border);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal);
+  }
+  .stat-num{ font-size:24px; font-weight:800; font-family:'Archivo Black',sans-serif; }
+  .stat-label{ font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; margin-top:2px;}
+  .stat-sub{ font-size:11.5px; color:var(--text-faint); margin-top:2px; }
+
+  /* ---------- SECTION HEADER ---------- */
+  .section{ padding:88px 0; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .section-head h2{ font-size:clamp(26px,3vw,36px); }
+
+  /* ---------- CASES ---------- */
+  .cases-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .case-card{
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--card);
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .case-card:hover{ transform:translateY(-6px); border-color:rgba(45,224,194,0.4); }
+  .case-media{
+    position:relative;
+    aspect-ratio:16/10;
+    background:linear-gradient(160deg,#1b1f20,#08090a);
+    display:flex; align-items:flex-end; padding:14px;
+  }
+  .case-ph-1{ background:linear-gradient(150deg,#16302b,#0a0c0e 75%); }
+  .case-ph-2{ background:linear-gradient(155deg,#1c2624,#0a0c0e 75%); }
+  .case-ph-3{ background:linear-gradient(145deg,#132422,#0a0c0e 75%); }
+  .case-card:hover .pf-glyph{ opacity:0.75; transform:scale(1.06); }
+  .case-media span{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:999px;
+    background:rgba(0,0,0,0.55);
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .case-body{ padding:22px 22px 0; }
+  .case-body h3{ font-size:20px; margin-bottom:8px; }
+  .case-body p{ color:var(--text-dim); font-size:13.5px; line-height:1.5; margin-bottom:18px; }
+  .case-metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--card-border);
+  }
+  .case-metrics div{ padding:16px 0 20px; }
+  .case-metrics div:nth-child(2){ border-left:1px solid var(--card-border); border-right:1px solid var(--card-border); padding-left:16px; padding-right:16px;}
+  .case-metrics div:nth-child(1){ padding-left:0; }
+  .case-metrics label{
+    display:block;
+    font-size:10px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:6px;
+  }
+  .case-metrics strong{
+    font-size:16px;
+    color:var(--teal);
+    font-weight:800;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .service-card{
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    padding:30px 26px;
+    background:var(--card);
+    transition:border-color .3s ease, background .3s ease, transform .3s ease;
+  }
+  .service-card:hover{
+    border-color:rgba(45,224,194,0.45);
+    background:#141a19;
+    transform:translateY(-4px);
+  }
+  .service-icon{
+    width:48px; height:48px;
+    border-radius:12px;
+    background:var(--teal-dim);
+    color:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:22px;
+  }
+  .service-card h3{ font-size:16px; margin-bottom:10px; }
+  .service-card p{ color:var(--text-dim); font-size:13.5px; line-height:1.55; text-transform:none; }
+
+  /* ---------- PORTFOLIO ---------- */
+  .pf-filters{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px;
+  }
+  .pf-filter-btn{
+    font-family:'Inter', sans-serif;
+    font-size:11.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    padding:10px 18px; border-radius:999px;
+    border:1px solid var(--card-border);
+    background:transparent; color:var(--text-dim);
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+  .pf-filter-btn:hover{ color:var(--text); border-color:rgba(45,224,194,0.45); }
+  .pf-filter-btn.active{ background:var(--teal); color:#03110d; border-color:var(--teal); }
+
+  .pf-masonry{ columns:4 220px; column-gap:20px; }
+  .pf-item{
+    break-inside:avoid; margin-bottom:20px;
+    border-radius:var(--radius); overflow:hidden; position:relative;
+    border:1px solid var(--card-border); background:var(--card);
+    cursor:pointer;
+    transition:transform .4s ease, border-color .3s ease;
+  }
+  .pf-item:hover{ transform:translateY(-6px); border-color:rgba(45,224,194,0.45); }
+  .pf-thumb{ width:100%; position:relative; overflow:hidden; }
+  .pf-r-tall{ aspect-ratio:3/4; } .pf-r-square{ aspect-ratio:1/1; } .pf-r-wide{ aspect-ratio:4/3; } .pf-r-portrait{ aspect-ratio:2/3; }
+
+  .pf-ph-1{ background:linear-gradient(150deg,#16302b,#0a0c0e 70%); }
+  .pf-ph-2{ background:linear-gradient(160deg,#1c2624,#0a0c0e 70%); }
+  .pf-ph-3{ background:linear-gradient(140deg,#14201d,#0a0c0e 70%); }
+  .pf-ph-4{ background:linear-gradient(155deg,#20221a,#0a0c0e 70%); }
+  .pf-ph-5{ background:linear-gradient(145deg,#132422,#0a0c0e 70%); }
+  .pf-ph-6{ background:linear-gradient(165deg,#1a2422,#0a0c0e 70%); }
+  .pf-ph-7{ background:linear-gradient(150deg,#182a26,#0a0c0e 70%); }
+  .pf-ph-8{ background:linear-gradient(160deg,#1e2320,#0a0c0e 70%); }
+
+  .pf-thumb::after{
+    content:""; position:absolute; inset:0; opacity:0.3; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .pf-thumb .pf-glyph{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    opacity:0.45; transition:opacity .3s ease, transform .4s ease;
+  }
+  .pf-item:hover .pf-glyph{ opacity:0.75; transform:scale(1.06); }
+  .pf-thumb .pf-glyph svg{ width:32%; height:32%; stroke:var(--teal); fill:none; stroke-width:1.3; }
+
+  /* media fill (imagen/video/embed pegado por el usuario) */
+  .pf-media-fill{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:0; border:none; background:#000;
+  }
+  .pf-has-media .pf-glyph{ display:none; }
+
+  /* arrastrar para reencuadrar una imagen dentro de su marco */
+  body.edit-mode .pf-has-media[data-media-type="image"]:not(.pf-avatar){ cursor:grab; }
+  body.edit-mode .pf-has-media[data-media-type="image"]:not(.pf-avatar).pf-dragging{ cursor:grabbing; }
+  .pf-reposition-hint{
+    position:absolute; top:8px; left:50%; transform:translateX(-50%);
+    z-index:6; font-size:10px; font-weight:600; letter-spacing:0.03em;
+    color:var(--text); background:rgba(10,12,14,0.75); backdrop-filter:blur(6px);
+    border:1px solid var(--card-border); border-radius:999px;
+    padding:5px 10px; white-space:nowrap; pointer-events:none;
+    opacity:0; transition:opacity .2s ease;
+  }
+  body.edit-mode .pf-has-media[data-media-type="image"]:hover .pf-reposition-hint{ opacity:1; }
+
+  /* ---------- AVATARES DE TESTIMONIOS (foto por link) ---------- */
+  .pf-avatar{
+    overflow:visible;
+    cursor:default;
+  }
+  .pf-avatar .pf-media-fill{ border-radius:50%; }
+  .pf-avatar .pf-glyph{ opacity:0.55; }
+  .pf-avatar .pf-glyph svg{ width:44%; height:44%; }
+  .pf-avatar .pf-media-edit{
+    left:auto; right:auto; bottom:auto;
+    top:calc(100% + 10px); left:50%;
+    transform:translateX(-50%);
+    width:180px;
+  }
+  .pf-avatar .pf-media-edit::before{
+    content:""; position:absolute; top:-5px; left:50%; transform:translateX(-50%) rotate(45deg);
+    width:9px; height:9px; background:rgba(10,12,14,0.85);
+    border-left:1px solid var(--card-border); border-top:1px solid var(--card-border);
+  }
+
+  /* panel para pegar link de foto/video — solo visible en modo edición */
+  .pf-media-edit{
+    display:none;
+    position:absolute; left:8px; right:8px; bottom:8px; z-index:5;
+    gap:6px; align-items:center;
+    background:rgba(10,12,14,0.85); backdrop-filter:blur(6px);
+    border:1px solid var(--card-border); border-radius:10px;
+    padding:6px 6px 6px 10px;
+  }
+  body.edit-mode .pf-media-edit{ display:flex; }
+  .pf-media-input{
+    flex:1; min-width:0; background:transparent; border:none;
+    color:var(--text); font-size:11.5px; font-family:'Inter', sans-serif;
+  }
+  .pf-media-input::placeholder{ color:var(--text-faint); }
+  .pf-media-input:focus{ outline:none; }
+  .pf-media-save, .pf-media-clear{
+    width:24px; height:24px; border-radius:6px; flex-shrink:0;
+    border:1px solid var(--card-border); background:transparent;
+    color:var(--text-dim); font-size:12px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .2s ease;
+  }
+  .pf-media-save:hover{ border-color:var(--teal); color:var(--teal); }
+  .pf-media-clear:hover{ border-color:#ff6b6b; color:#ff6b6b; }
+  .pf-tag{
+    position:absolute; top:12px; left:12px; z-index:2;
+    font-size:9.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+    background:rgba(10,12,14,0.7); border:1px solid rgba(255,255,255,0.12);
+    padding:6px 11px; border-radius:999px; backdrop-filter:blur(6px);
+    color:var(--text);
+  }
+  .pf-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(to top, rgba(10,12,14,0.94) 0%, transparent 55%);
+    opacity:0; transition:opacity .3s ease;
+    display:flex; align-items:flex-end; padding:16px;
+  }
+  .pf-item:hover .pf-overlay{ opacity:1; }
+  .pf-overlay strong{ display:block; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.01em; }
+  .pf-overlay span{ font-size:11px; color:var(--text-dim); font-weight:600; letter-spacing:0.02em; }
+
+  @media (max-width:760px){
+    .pf-masonry{ columns:2 150px; }
+  }
+
+  /* ---------- LOGOS ---------- */
+  .logos-section{ padding:52px 0; border-top:1px solid var(--card-border); border-bottom:1px solid var(--card-border); }
+  .logos-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:36px;
+    opacity:0.55;
+  }
+  .logos-row div{
+    display:flex; align-items:center; gap:8px;
+    font-weight:700; font-size:15px; color:var(--text-dim);
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .testi-card{
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    padding:26px;
+    background:var(--card);
+  }
+  .stars{ color:var(--teal); font-size:14px; letter-spacing:2px; margin-bottom:16px; }
+  .testi-card p{ font-size:14.5px; color:var(--text-dim); line-height:1.6; margin-bottom:24px; text-transform:none; }
+  .testi-person{ display:flex; align-items:center; gap:12px; }
+  .avatar{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:#232a2a;
+    flex-shrink:0;
+  }
+  .testi-person strong{ font-size:13.5px; display:block; }
+  .testi-person span{ font-size:12px; color:var(--text-faint); }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{
+    margin:0 32px 40px;
+    max-width:calc(var(--maxw) - 64px);
+    margin-left:auto; margin-right:auto;
+    border-radius:20px;
+    border:1px solid var(--card-border);
+    background:radial-gradient(circle at 15% 30%, rgba(45,224,194,0.08), transparent 60%), var(--card);
+    padding:52px 48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .cta-final h2{ font-size:clamp(24px,3vw,32px); max-width:420px; }
+  .cta-final .mid p{ color:var(--text-dim); font-size:14px; max-width:280px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:26px 0 40px;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    padding-top:24px;
+    border-top:1px solid var(--card-border);
+    font-size:12px;
+    color:var(--text-faint);
+  }
+  .footer-links{ display:flex; gap:26px; }
+  .footer-socials{ display:flex; gap:16px; }
+  .footer-socials a{
+    width:32px; height:32px;
+    border:1px solid var(--card-border);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim);
+  }
+  .footer-socials a:hover{ color:var(--teal); border-color:var(--teal); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .nav-links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:24px; }
+    .stat{ border-right:none; }
+    .cases-grid, .services-grid, .testi-grid{ grid-template-columns:1fr; }
+    .cta-final{ flex-direction:column; align-items:flex-start; }
+    .floating-cta{ display:none; }
+  }
+
+  /* ---------- EDICIÓN ---------- */
+  #edit-toggle-btn{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:9999;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 22px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border:1px solid var(--teal);
+    background:var(--teal);
+    color:#03110d;
+    box-shadow:0 8px 24px rgba(45,224,194,0.35);
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+    font-family:inherit;
+  }
+  #edit-toggle-btn:hover{ transform:translateY(-2px); }
+  #edit-toggle-btn.active{
+    background:var(--bg);
+    color:var(--teal);
+  }
+
+  #edit-save-msg{
+    position:fixed;
+    right:24px;
+    bottom:78px;
+    z-index:9999;
+    background:var(--card);
+    border:1px solid var(--teal);
+    color:var(--teal);
+    font-size:12px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:8px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  #edit-save-msg.show{ opacity:1; }
+
+  body.edit-mode [data-editable]{
+    outline:1.5px dashed rgba(45,224,194,0.5);
+    outline-offset:3px;
+    cursor:text;
+    transition:background .2s ease;
+    border-radius:4px;
+  }
+  body.edit-mode [data-editable]:hover{
+    background:rgba(45,224,194,0.08);
+  }
+  body.edit-mode [data-editable]:focus{
+    outline:2px solid var(--teal);
+    background:rgba(45,224,194,0.1);
+  }
+
+  #edit-reset-btn{
+    position:fixed;
+    right:24px;
+    bottom:82px;
+    z-index:9999;
+    display:none;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border:1px solid var(--card-border);
+    background:var(--bg-soft);
+    color:var(--text-dim);
+    font-family:inherit;
+  }
+  #edit-reset-btn:hover{ color:var(--text); border-color:var(--teal); }
+  #edit-reset-btn.show{ display:inline-flex; }
+
+  @media (max-width:600px){
+    #edit-toggle-btn{ padding:12px 18px; font-size:12px; right:16px; bottom:16px; }
+    #edit-save-msg{ right:16px; bottom:70px; }
+  }
+
+  /* ---------- PASSWORD MODAL ---------- */
+  #pw-modal-overlay{
+    position:fixed; inset:0; z-index:10000;
+    background:rgba(6,8,9,0.75);
+    backdrop-filter:blur(4px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  #pw-modal-overlay.show{ display:flex; }
+  #pw-modal{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    padding:28px;
+    width:100%;
+    max-width:340px;
+  }
+  #pw-modal h3{
+    font-size:16px;
+    margin-bottom:14px;
+    text-transform:none;
+    font-family:inherit;
+    font-weight:700;
+    letter-spacing:0;
+  }
+  #pw-modal input{
+    width:100%;
+    padding:12px 14px;
+    border-radius:8px;
+    border:1px solid var(--card-border);
+    background:var(--bg-soft);
+    color:var(--text);
+    font-size:14px;
+    margin-bottom:10px;
+    font-family:inherit;
+  }
+  #pw-modal input:focus{ outline:none; border-color:var(--teal); }
+  #pw-error{
+    color:#ff6b6b;
+    font-size:12px;
+    margin-bottom:10px;
+    display:none;
+  }
+  #pw-error.show{ display:block; }
+  #pw-modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:4px;
+  }
+  #pw-modal-actions button{
+    flex:1;
+    font-family:inherit;
+  }
+  #pw-cancel-btn{
+    background:transparent;
+    border:1px solid var(--card-border);
+    color:var(--text-dim);
+    padding:10px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  #pw-cancel-btn:hover{ color:var(--text); border-color:var(--teal); }
+  #pw-confirm-btn{
+    background:var(--teal);
+    color:#03110d;
+    border:none;
+    padding:10px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  #sb-status{
+    position:fixed;
+    left:24px;
+    bottom:24px;
+    z-index:9999;
+    font-size:11px;
+    color:var(--text-faint);
+    background:var(--bg-soft);
+    border:1px solid var(--card-border);
+    padding:6px 12px;
+    border-radius:999px;
+    display:none;
+  }
+  #sb-status.show{ display:inline-flex; }
+  #sb-status.error{ color:#ff6b6b; border-color:#ff6b6b; }
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<div class="logo" data-edit-key="edit-1" data-editable="true">Synchrony</div>
+<nav class="nav-links">
+<a data-edit-key="edit-3" data-editable="true" href="#inicio">Inicio</a>
+<a data-edit-key="edit-4" data-editable="true" href="#casos">Casos de Éxito</a>
+<a data-edit-key="edit-5" data-editable="true" href="#servicios">Servicios</a>
+<a data-edit-key="edit-6" data-editable="true" href="#portafolio">Portafolio</a>
+<a data-edit-key="edit-7" data-editable="true" href="#clientes">Clientes</a>
+<a data-edit-key="edit-8" data-editable="true" href="#testimonios">Testimonios</a>
+<a data-edit-key="edit-9" data-editable="true" href="#contacto">Contacto</a>
+</nav>
+<div class="nav-cta">
+<a class="btn btn-ghost" data-edit-key="edit-10" data-editable="true" href="#contacto">Hablemos</a>
+</div>
+</div>
+</header>
+<section class="hero" id="inicio">
+<div class="wrap hero-grid">
+<div>
+<div class="eyebrow" data-edit-key="edit-11" data-editable="true">Marketing creativo que vende</div>
+<h1 data-edit-key="edit-17" data-editable="true">Convertimos<br/>ideas en <span class="accent">resultados</span></h1>
+<p data-edit-key="edit-31" data-editable="true">Estrategias de marketing digital, contenido de alto impacto y campañas que generan clientes y aumentan tus ventas.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" data-edit-key="edit-32" data-editable="true" href="#">Ver showreel ▶</a>
+<a class="btn-link" data-edit-key="edit-33" data-editable="true" href="#casos">Ver casos de éxito →</a>
+</div>
+<div class="hero-tags-label">Agencia especializada en</div>
+<div class="hero-tags">
+<span data-edit-key="edit-34" data-editable="true"><span class="tag-dot">●</span> Meta Ads</span>
+<span data-edit-key="edit-35" data-editable="true"><span class="tag-dot">▲</span> TikTok Ads</span>
+<span data-edit-key="edit-36" data-editable="true"><span class="tag-dot">◐</span> Instagram</span>
+<span data-edit-key="edit-37" data-editable="true"><span class="tag-dot">◆</span> Branding</span>
+<span data-edit-key="edit-38" data-editable="true"><span class="tag-dot">▣</span> Video Ads</span>
+</div>
+</div>
+<div class="hero-visual pf-thumb hero-ph-1 pf-has-media" data-default-media="images/hero-phones.jpeg" data-media-key="hero-1" data-media-type="image">
+<div class="pf-media-fill" style="background-image:url('images/hero-phones.jpeg'); background-size:cover; background-position:50% 50%;"></div>
+<div class="pf-media-edit">
+<input class="pf-media-input" placeholder="Link de foto o video (URL)" type="text" value="images/hero-phones.jpeg"/>
+<button class="pf-media-save" title="Guardar" type="button">✓</button>
+<button class="pf-media-clear" title="Quitar" type="button">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="M21 15l-5-5-9 9"></path></svg></div>
+</div>
+</section>
+<div class="floating-cta">HABLEMOS ✉</div>
+<section class="stats">
+<div class="wrap stats-grid">
+<div class="stat">
+<div class="stat-icon" data-edit-key="edit-117" data-editable="true">$</div>
+<div>
+<div class="stat-num" data-edit-key="edit-118" data-editable="true">+3.2M</div>
+<div class="stat-label" data-edit-key="edit-119" data-editable="true">USD generados</div>
+<div class="stat-sub" data-edit-key="edit-120" data-editable="true">para nuestros clientes</div>
+</div>
+</div>
+<div class="stat">
+<div class="stat-icon" data-edit-key="edit-121" data-editable="true">↗</div>
+<div>
+<div class="stat-num" data-edit-key="edit-122" data-editable="true">8.6X</div>
+<div class="stat-label" data-edit-key="edit-123" data-editable="true">ROAS promedio</div>
+<div class="stat-sub" data-edit-key="edit-124" data-editable="true">retorno sobre inversión</div>
+</div>
+</div>
+<div class="stat">
+<div class="stat-icon" data-edit-key="edit-125" data-editable="true">☺</div>
+<div>
+<div class="stat-num" data-edit-key="edit-126" data-editable="true">+150</div>
+<div class="stat-label" data-edit-key="edit-127" data-editable="true">Marcas impulsadas</div>
+<div class="stat-sub" data-edit-key="edit-128" data-editable="true">en diferentes industrias</div>
+</div>
+</div>
+<div class="stat">
+<div class="stat-icon" data-edit-key="edit-129" data-editable="true">🛒</div>
+<div>
+<div class="stat-num" data-edit-key="edit-130" data-editable="true">+480K</div>
+<div class="stat-label" data-edit-key="edit-131" data-editable="true">Clientes generados</div>
+<div class="stat-sub" data-edit-key="edit-132" data-editable="true">a través de campañas</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="casos">
+<div class="wrap">
+<div class="eyebrow" data-edit-key="edit-12" data-editable="true">Casos de éxito</div>
+<div class="section-head">
+<h2 data-edit-key="edit-18" data-editable="true">Resultados que hablan por sí solos</h2>
+<a class="btn-link" data-edit-key="edit-76" data-editable="true" href="#">Ver todos los casos →</a>
+</div>
+<div class="cases-grid">
+<div class="case-card">
+<div class="case-media pf-thumb case-ph-1" data-media-key="case-1">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><rect height="8" width="3.6" x="3.5" y="12"></rect><rect height="13" width="3.6" x="10.2" y="7"></rect><rect height="17" width="3.6" x="16.9" y="3"></rect></svg></div>
+<span data-edit-key="edit-133" data-editable="true">E-COMMERCE</span>
+</div>
+<div class="case-body">
+<h3 data-edit-key="edit-22" data-editable="true">Brand Name</h3>
+<p data-edit-key="edit-41" data-editable="true">Estrategia completa de publicidad en Meta e Instagram.</p>
+</div>
+<div class="case-metrics">
+<div data-edit-key="edit-44" data-editable="true"><label>ROAS</label><strong>9.4X</strong></div>
+<div data-edit-key="edit-45" data-editable="true"><label>Ventas</label><strong>$287,540</strong></div>
+<div data-edit-key="edit-46" data-editable="true"><label>Incremento</label><strong>+320%</strong></div>
+</div>
+</div>
+<div class="case-card">
+<div class="case-media pf-thumb case-ph-2" data-media-key="case-2">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></div>
+<span data-edit-key="edit-134" data-editable="true">E-COMMERCE</span>
+</div>
+<div class="case-body">
+<h3 data-edit-key="edit-23" data-editable="true">Brand Name</h3>
+<p data-edit-key="edit-42" data-editable="true">Campañas de conversión y remarketing enfocadas en escalar ventas.</p>
+</div>
+<div class="case-metrics">
+<div data-edit-key="edit-47" data-editable="true"><label>ROAS</label><strong>7.8X</strong></div>
+<div data-edit-key="edit-48" data-editable="true"><label>Ventas</label><strong>$186,420</strong></div>
+<div data-edit-key="edit-49" data-editable="true"><label>Incremento</label><strong>+215%</strong></div>
+</div>
+</div>
+<div class="case-card">
+<div class="case-media pf-thumb case-ph-3" data-media-key="case-3">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-8.9 8.4 8.9 8.9 0 01-3.8-.9L3 21l1.9-5a8.4 8.4 0 01-.9-3.8A8.4 8.4 0 0112.4 3a8.4 8.4 0 018.6 8.5z"></path></svg></div>
+<span data-edit-key="edit-135" data-editable="true">SERVICIOS</span>
+</div>
+<div class="case-body">
+<h3 data-edit-key="edit-24" data-editable="true">Brand Name</h3>
+<p data-edit-key="edit-43" data-editable="true">Generación de leads calificados para servicios de alto valor.</p>
+</div>
+<div class="case-metrics">
+<div data-edit-key="edit-50" data-editable="true"><label>Leads</label><strong>1,250</strong></div>
+<div data-edit-key="edit-51" data-editable="true"><label>Costo por Lead</label><strong>$2.45</strong></div>
+<div data-edit-key="edit-52" data-editable="true"><label>Incremento</label><strong>+175%</strong></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="servicios" style="padding-top:0;">
+<div class="wrap">
+<div class="eyebrow" data-edit-key="edit-13" data-editable="true">Qué hacemos</div>
+<div class="section-head">
+<h2 data-edit-key="edit-19" data-editable="true">Servicios</h2>
+<a class="btn-link" data-edit-key="edit-77" data-editable="true" href="#">Ver todos los servicios →</a>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">◎</div>
+<h3 data-edit-key="edit-25" data-editable="true">ESTRATEGIA DIGITAL</h3>
+<p data-edit-key="edit-53" data-editable="true">Estrategias personalizadas enfocadas en crecimiento.</p>
+</div>
+<div class="service-card">
+<div class="service-icon">📣</div>
+<h3 data-edit-key="edit-26" data-editable="true">PUBLICIDAD PAGADA</h3>
+<p data-edit-key="edit-54" data-editable="true">Campañas en Meta, TikTok, Instagram y Google Ads.</p>
+</div>
+<div class="service-card">
+<div class="service-icon">▶</div>
+<h3 data-edit-key="edit-27" data-editable="true">CONTENIDO DE ALTO IMPACTO</h3>
+<p data-edit-key="edit-55" data-editable="true">Videos y creatividades que convierten y conectan.</p>
+</div>
+<div class="service-card">
+<div class="service-icon">✎</div>
+<h3 data-edit-key="edit-28" data-editable="true">BRANDING Y DISEÑO</h3>
+<p data-edit-key="edit-56" data-editable="true">Construimos marcas fuertes y memorables.</p>
+</div>
+<div class="service-card">
+<div class="service-icon">📊</div>
+<h3 data-edit-key="edit-29" data-editable="true">ANÁLISIS Y OPTIMIZACIÓN</h3>
+<p data-edit-key="edit-57" data-editable="true">Medimos, analizamos y optimizamos para escalar.</p>
+</div>
+<div class="service-card">
+<div class="service-icon">⚙</div>
+<h3 data-edit-key="edit-30" data-editable="true">AUTOMATIZACIÓN Y CRM</h3>
+<p data-edit-key="edit-58" data-editable="true">Sistemas que convierten y fidelizan clientes.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="portafolio" style="padding-top:0;">
+<div class="wrap">
+<div class="eyebrow" data-edit-key="edit-90" data-editable="true">Trabajo reciente</div>
+<div class="section-head">
+<h2 data-edit-key="edit-91" data-editable="true">Portafolio</h2>
+<a class="btn-link" data-edit-key="edit-92" data-editable="true" href="#">Ver todo el trabajo →</a>
+</div>
+
+<div class="pf-filters">
+  <button class="pf-filter-btn active" data-pf-filter="all">Todo</button>
+  <button class="pf-filter-btn" data-pf-filter="video">Producción de Video</button>
+  <button class="pf-filter-btn" data-pf-filter="meta">Meta Ads</button>
+  <button class="pf-filter-btn" data-pf-filter="ig">Campañas Instagram</button>
+  <button class="pf-filter-btn" data-pf-filter="brand">Branding</button>
+</div>
+
+<div class="pf-masonry" id="pfMasonry">
+  <!-- Cada .pf-item es una miniatura placeholder. Reemplaza el fondo .pf-ph-N por la imagen/video final sin tocar el layout. -->
+  <div class="pf-item" data-pf-cat="video">
+    <div class="pf-thumb pf-r-tall pf-ph-1" data-media-key="pf-1">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M15 10l5-3v10l-5-3"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-93" data-editable="true">Producción de Video</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-94" data-editable="true">Nightfall — Video de Marca</strong><span data-edit-key="edit-95" data-editable="true">Cinemático / 60s</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="meta">
+    <div class="pf-thumb pf-r-square pf-ph-2" data-media-key="pf-2">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M12 8v8"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-96" data-editable="true">Meta Ads Campaign</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-97" data-editable="true">Aurora — Set de Estáticos</strong><span data-edit-key="edit-98" data-editable="true">Meta / Carrusel</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="ig">
+    <div class="pf-thumb pf-r-wide pf-ph-3" data-media-key="pf-3">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-99" data-editable="true">Campaña Instagram</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-100" data-editable="true">Reverie — Serie de Reels</strong><span data-edit-key="edit-101" data-editable="true">Instagram / Reels</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="brand">
+    <div class="pf-thumb pf-r-portrait pf-ph-4" data-media-key="pf-4">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-102" data-editable="true">Branding</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-103" data-editable="true">Solace — Sistema de Identidad</strong><span data-edit-key="edit-104" data-editable="true">Branding / Suite Completa</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="video">
+    <div class="pf-thumb pf-r-portrait pf-ph-5" data-media-key="pf-5">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M15 10l5-3v10l-5-3"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-105" data-editable="true">Producción de Video</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-106" data-editable="true">Halcyon — Video de Producto</strong><span data-edit-key="edit-107" data-editable="true">Cinemático / 30s</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="brand">
+    <div class="pf-thumb pf-r-square pf-ph-6" data-media-key="pf-6">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-108" data-editable="true">Branding</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-109" data-editable="true">Verano — Packaging</strong><span data-edit-key="edit-110" data-editable="true">Branding / Empaque</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="ig">
+    <div class="pf-thumb pf-r-tall pf-ph-7" data-media-key="pf-7">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-111" data-editable="true">Campaña Instagram</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-112" data-editable="true">Meridian — Refresh de Grid</strong><span data-edit-key="edit-113" data-editable="true">Instagram / Feed</span></div></div>
+    </div>
+  </div>
+  <div class="pf-item" data-pf-cat="meta">
+    <div class="pf-thumb pf-r-wide pf-ph-8" data-media-key="pf-8">
+      <div class="pf-media-edit">
+        <input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">
+        <button type="button" class="pf-media-save" title="Guardar">✓</button>
+        <button type="button" class="pf-media-clear" title="Quitar">✕</button>
+      </div>
+      <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M12 8v8"/></svg></div>
+      <span class="pf-tag" data-edit-key="edit-114" data-editable="true">Meta Ads Campaign</span>
+      <div class="pf-overlay"><div><strong data-edit-key="edit-115" data-editable="true">Fathom — Set de Video Ads</strong><span data-edit-key="edit-116" data-editable="true">Meta / Video</span></div></div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<section class="logos-section" id="clientes">
+<div class="wrap">
+<div class="eyebrow" data-edit-key="edit-14" data-editable="true" style="margin-bottom:24px;">Marcas que confían en nosotros</div>
+<div class="logos-row">
+<div data-edit-key="edit-59" data-editable="true">▶ logoipsum</div>
+<div data-edit-key="edit-60" data-editable="true">✳ logoipsum</div>
+<div data-edit-key="edit-61" data-editable="true">◫ logoipsum</div>
+<div data-edit-key="edit-62" data-editable="true">● LOGOIPSUM</div>
+<div data-edit-key="edit-63" data-editable="true">f logoipsum</div>
+<div data-edit-key="edit-64" data-editable="true">▷ logoipsum</div>
+<div data-edit-key="edit-65" data-editable="true">logo logo ipsum</div>
+</div>
+</div>
+</section>
+<section class="section" id="testimonios">
+<div class="wrap">
+<div class="eyebrow" data-edit-key="edit-15" data-editable="true">Testimonios</div>
+<div class="section-head">
+<h2 data-edit-key="edit-20" data-editable="true">Lo que dicen nuestros clientes</h2>
+<a class="btn-link" data-edit-key="edit-78" data-editable="true" href="#">Ver más testimonios →</a>
+</div>
+<div class="testi-grid">
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p data-edit-key="edit-66" data-editable="true">Synchrony cambió por completo nuestros resultados. En 3 meses duplicamos nuestras ventas y logramos un ROAS que nunca habíamos visto.</p>
+<div class="testi-person">
+<div class="avatar pf-thumb pf-avatar" data-media-key="testi-1">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"></circle><path d="M5 20c0-4 3.2-6.5 7-6.5s7 2.5 7 6.5"></path></svg></div>
+</div>
+<div><strong data-edit-key="edit-69" data-editable="true">Cliente Name</strong><span data-edit-key="edit-72" data-editable="true">CEO, Brand Name</span></div>
+</div>
+</div>
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p data-edit-key="edit-67" data-editable="true">El equipo entiende el negocio, propone, ejecuta y entrega resultados reales. Totalmente recomendados.</p>
+<div class="testi-person">
+<div class="avatar pf-thumb pf-avatar" data-media-key="testi-2">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"></circle><path d="M5 20c0-4 3.2-6.5 7-6.5s7 2.5 7 6.5"></path></svg></div>
+</div>
+<div><strong data-edit-key="edit-70" data-editable="true">Cliente Name</strong><span data-edit-key="edit-73" data-editable="true">Founder, Brand Name</span></div>
+</div>
+</div>
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p data-edit-key="edit-68" data-editable="true">La calidad del contenido y las campañas superaron nuestras expectativas. Profesionales y creativos.</p>
+<div class="testi-person">
+<div class="avatar pf-thumb pf-avatar" data-media-key="testi-3">
+<div class="pf-media-edit">
+<input type="text" class="pf-media-input" placeholder="Link de foto (URL)">
+<button type="button" class="pf-media-save" title="Guardar">✓</button>
+<button type="button" class="pf-media-clear" title="Quitar">✕</button>
+</div>
+<div class="pf-glyph"><svg viewbox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"></circle><path d="M5 20c0-4 3.2-6.5 7-6.5s7 2.5 7 6.5"></path></svg></div>
+</div>
+<div><strong data-edit-key="edit-71" data-editable="true">Cliente Name</strong><span data-edit-key="edit-74" data-editable="true">Marketing Director, Brand Name</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final" id="contacto">
+<div>
+<div class="eyebrow" data-edit-key="edit-16" data-editable="true">¿Listo para escalar tu negocio?</div>
+<h2 data-edit-key="edit-21" data-editable="true">Hablemos de<br/>tus <span class="accent" style="color:var(--teal);">objetivos</span></h2>
+</div>
+<div class="mid">
+<p data-edit-key="edit-75" data-editable="true">Cuéntanos tu proyecto y te ayudaremos a diseñar una estrategia que genere resultados reales.</p>
+</div>
+<a class="btn btn-primary" href="#">Agendar llamada →</a>
+</section>
+<footer>
+<div class="wrap">
+<div class="footer-row">
+<div class="logo" data-edit-key="edit-2" data-editable="true" style="font-size:15px;">Synchrony</div>
+<div data-edit-key="edit-79" data-editable="true">© 2024 Synchrony Agency. Todos los derechos reservados.</div>
+<div class="footer-links" data-edit-key="edit-80" data-editable="true">
+<a href="#">Políticas de privacidad</a>
+<a href="#">Términos y condiciones</a>
+</div>
+<div class="footer-socials" data-edit-key="edit-81" data-editable="true">
+<a href="#">f</a>
+<a href="#">📷</a>
+<a href="#">♪</a>
+<a href="#">in</a>
+</div>
+</div>
+</div>
+</footer>
+
+<button id="edit-toggle-btn" type="button">✎ Editar textos</button>
+<button id="edit-reset-btn" type="button">Restablecer textos originales</button>
+<div id="edit-save-msg">Cambios guardados ✓</div>
+<div id="sb-status"></div>
+
+<div id="pw-modal-overlay">
+  <div id="pw-modal">
+    <h3>Ingresa la contraseña para editar</h3>
+    <input autocomplete="off" id="pw-input" placeholder="Contraseña" type="password"/>
+    <div id="pw-error">Contraseña incorrecta.</div>
+    <div id="pw-modal-actions">
+      <button id="pw-cancel-btn" type="button">Cancelar</button>
+      <button id="pw-confirm-btn" type="button">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Filtro de categorías del Portafolio
+  var pfBtns = document.querySelectorAll('.pf-filter-btn');
+  var pfItems = document.querySelectorAll('.pf-item');
+  pfBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      pfBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-pf-filter');
+      pfItems.forEach(function(item){
+        var match = f === 'all' || item.getAttribute('data-pf-cat') === f;
+        item.style.display = match ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  // ---------- CONFIGURACIÓN SUPABASE ----------
+  var SUPABASE_URL = "https://ijsryhztprmwawkhnezn.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlqc3J5aHp0cHJtd2F3a2huZXpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzMzE0MjEsImV4cCI6MjA5ODkwNzQyMX0.AKSReFogKSqYYt7fO23LDjGy144JI8Y8i1ABdNfXerE";
+  var TABLE_NAME = "site_edits";
+  var ROW_ID = "main";
+  var EDIT_PASSWORD = "s1234657";
+  var STORAGE_KEY = "synchrony_site_edits_v1"; // cache local de respaldo
+
+  var supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  var body = document.body;
+  var toggleBtn = document.getElementById("edit-toggle-btn");
+  var resetBtn = document.getElementById("edit-reset-btn");
+  var saveMsg = document.getElementById("edit-save-msg");
+  var sbStatus = document.getElementById("sb-status");
+  var pwOverlay = document.getElementById("pw-modal-overlay");
+  var pwInput = document.getElementById("pw-input");
+  var pwError = document.getElementById("pw-error");
+  var pwConfirmBtn = document.getElementById("pw-confirm-btn");
+  var pwCancelBtn = document.getElementById("pw-cancel-btn");
+  var editables = Array.prototype.slice.call(document.querySelectorAll("[data-editable]"));
+  var mediaThumbs = Array.prototype.slice.call(document.querySelectorAll(".pf-thumb[data-media-key]"));
+  var mediaEdits = {};
+  var editing = false;
+  var saveTimeout = null;
+  var sbStatusTimeout = null;
+
+  // ---------- MEDIOS DEL PORTAFOLIO (foto/video por link) ----------
+  function detectMediaType(url){
+    if(/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) return "video";
+    if(/(youtube(-nocookie)?\.com\/(watch\?v=|shorts\/|embed\/|live\/)|youtu\.be\/)/i.test(url)) return "youtube";
+    if(/vimeo\.com\//i.test(url)) return "vimeo";
+    return "image";
+  }
+
+  function toEmbedUrl(url, type){
+    if(type === "youtube"){
+      var m1 = url.match(/[?&]v=([^&]+)/);
+      var m2 = url.match(/youtu\.be\/([^?&]+)/);
+      var m3 = url.match(/\/(?:shorts|embed|live)\/([^?&]+)/);
+      var id = (m1 && m1[1]) || (m2 && m2[1]) || (m3 && m3[1]) || "";
+      var origin = (window.location.protocol.indexOf("http") === 0) ? window.location.origin : "";
+      var params = "rel=0&autoplay=1&mute=1&loop=1&controls=0&playsinline=1&playlist=" + id;
+      if(origin) params += "&origin=" + encodeURIComponent(origin);
+      return "https://www.youtube.com/embed/" + id + "?" + params;
+    }
+    if(type === "vimeo"){
+      var m = url.match(/vimeo\.com\/(?:.*\/)?(\d+)/);
+      var vid = m ? m[1] : "";
+      return "https://player.vimeo.com/video/" + vid + "?autoplay=1&muted=1&loop=1&background=1&controls=0";
+    }
+    return url;
+  }
+
+  function setThumbMedia(thumb, url, type, pos){
+    var existing = thumb.querySelector(".pf-media-fill");
+    if(existing) existing.remove();
+    var oldHint = thumb.querySelector(".pf-reposition-hint");
+    if(oldHint) oldHint.remove();
+    thumb.removeAttribute("data-media-type");
+
+    if(!url){
+      thumb.classList.remove("pf-has-media");
+      return;
+    }
+
+    thumb.classList.add("pf-has-media");
+    thumb.setAttribute("data-media-type", type);
+    var el;
+    if(type === "video"){
+      el = document.createElement("video");
+      el.className = "pf-media-fill";
+      el.src = url;
+      el.autoplay = true; el.muted = true; el.loop = true; el.playsInline = true;
+      el.setAttribute("muted", "");
+      el.setAttribute("playsinline", "");
+      var playPromise;
+      setTimeout(function(){
+        try{ playPromise = el.play(); if(playPromise && playPromise.catch) playPromise.catch(function(){}); }catch(e){}
+      }, 0);
+    } else if(type === "youtube" || type === "vimeo"){
+      el = document.createElement("iframe");
+      el.className = "pf-media-fill";
+      el.src = toEmbedUrl(url, type);
+      el.setAttribute("frameborder", "0");
+      el.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      el.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+      el.setAttribute("allowfullscreen", "");
+    } else {
+      var px = (pos && typeof pos.x === "number") ? pos.x : 50;
+      var py = (pos && typeof pos.y === "number") ? pos.y : 50;
+      el = document.createElement("div");
+      el.className = "pf-media-fill";
+      el.style.backgroundImage = "url('" + url.replace(/'/g, "%27") + "')";
+      el.style.backgroundSize = "cover";
+      el.style.backgroundPosition = px + "% " + py + "%";
+      if(!thumb.classList.contains("pf-avatar")){
+        var hint = document.createElement("div");
+        hint.className = "pf-reposition-hint";
+        hint.textContent = "Arrastra para acomodar la foto";
+        thumb.appendChild(hint);
+      }
+    }
+    thumb.insertBefore(el, thumb.firstChild);
+  }
+
+  function applyMediaEntry(thumb, entry){
+    var input = thumb.querySelector(".pf-media-input");
+    if(entry && entry.url){
+      setThumbMedia(thumb, entry.url, entry.type || detectMediaType(entry.url), entry.pos);
+      if(input) input.value = entry.url;
+    } else if(thumb.hasAttribute("data-default-media")){
+      // no hay dato guardado: conservar la imagen por defecto ya presente en el HTML
+      if(input && !input.value) input.value = thumb.getAttribute("data-default-media");
+    } else {
+      setThumbMedia(thumb, "", "");
+      if(input) input.value = "";
+    }
+    if(entry && entry.size && window.innerWidth > 900){
+      thumb.style.width = entry.size.w + "px";
+      thumb.style.height = entry.size.h + "px";
+    }
+  }
+
+  // ---------- TAMAÑO MANUAL DEL VISUAL DEL HERO (arrastrar esquina) ----------
+  (function(){
+    var heroVisual = document.querySelector('.hero-visual[data-media-key="hero-1"]');
+    if(!heroVisual || !window.ResizeObserver) return;
+    var ro = new ResizeObserver(function(entries){
+      if(!editing) return;
+      var rect = entries[0].contentRect;
+      clearTimeout(heroVisual._sizeDebounce);
+      heroVisual._sizeDebounce = setTimeout(function(){
+        mediaEdits["hero-1"] = Object.assign({}, mediaEdits["hero-1"], { size: { w: Math.round(rect.width), h: Math.round(rect.height) } });
+        saveAllEdits();
+      }, 500);
+    });
+    ro.observe(heroVisual);
+  })();
+
+  function applyMediaData(mediaObj){
+    mediaEdits = Object.assign({}, mediaObj || {});
+    mediaThumbs.forEach(function(thumb){
+      var key = thumb.getAttribute("data-media-key");
+      applyMediaEntry(thumb, mediaEdits[key]);
+    });
+  }
+
+  mediaThumbs.forEach(function(thumb){
+    var key = thumb.getAttribute("data-media-key");
+    var input = thumb.querySelector(".pf-media-input");
+    var saveBtn = thumb.querySelector(".pf-media-save");
+    var clearBtn = thumb.querySelector(".pf-media-clear");
+
+    function commit(url){
+      if(url){
+        var kind = detectMediaType(url);
+        mediaEdits[key] = { type: kind, url: url };
+        setThumbMedia(thumb, url, kind);
+      } else {
+        delete mediaEdits[key];
+        setThumbMedia(thumb, "", "");
+      }
+      saveAllEdits();
+    }
+
+    if(saveBtn){
+      saveBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        commit(input.value.trim());
+      });
+    }
+    if(clearBtn){
+      clearBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        input.value = "";
+        commit("");
+      });
+    }
+    if(input){
+      input.addEventListener("keydown", function(e){
+        if(e.key === "Enter"){
+          e.preventDefault();
+          commit(input.value.trim());
+        }
+      });
+      input.addEventListener("click", function(e){ e.stopPropagation(); });
+    }
+
+    // ---- arrastrar la imagen para reencuadrarla dentro del marco ----
+    var dragState = null;
+
+    function currentPos(){
+      var entry = mediaEdits[key];
+      var pos = (entry && entry.pos) || { x:50, y:50 };
+      return { x: pos.x, y: pos.y };
+    }
+
+    function startDrag(clientX, clientY){
+      if(!editing) return;
+      if(thumb.classList.contains("pf-avatar")) return;
+      if(thumb.getAttribute("data-media-type") !== "image") return;
+      dragState = {
+        startX: clientX, startY: clientY,
+        startPos: currentPos(),
+        rect: thumb.getBoundingClientRect()
+      };
+      thumb.classList.add("pf-dragging");
+    }
+
+    function moveDrag(clientX, clientY){
+      if(!dragState) return;
+      var dx = clientX - dragState.startX;
+      var dy = clientY - dragState.startY;
+      var w = dragState.rect.width || 1;
+      var h = dragState.rect.height || 1;
+      var x = dragState.startPos.x - (dx / w) * 100;
+      var y = dragState.startPos.y - (dy / h) * 100;
+      x = Math.max(0, Math.min(100, x));
+      y = Math.max(0, Math.min(100, y));
+      var fill = thumb.querySelector(".pf-media-fill");
+      if(fill) fill.style.backgroundPosition = x + "% " + y + "%";
+      dragState.lastPos = { x: x, y: y };
+    }
+
+    function endDrag(){
+      if(!dragState) return;
+      thumb.classList.remove("pf-dragging");
+      var finalPos = dragState.lastPos || dragState.startPos;
+      dragState = null;
+      var entry = mediaEdits[key];
+      if(entry){
+        entry.pos = finalPos;
+        saveAllEdits();
+      }
+    }
+
+    thumb.addEventListener("mousedown", function(e){
+      if(e.target === input || e.target === saveBtn || e.target === clearBtn) return;
+      if(thumb.getAttribute("data-media-type") !== "image") return;
+      e.preventDefault();
+      startDrag(e.clientX, e.clientY);
+      function onMove(ev){ moveDrag(ev.clientX, ev.clientY); }
+      function onUp(){
+        endDrag();
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", onUp);
+      }
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
+    });
+
+    thumb.addEventListener("touchstart", function(e){
+      if(thumb.getAttribute("data-media-type") !== "image") return;
+      var t = e.touches[0];
+      startDrag(t.clientX, t.clientY);
+    }, { passive: true });
+    thumb.addEventListener("touchmove", function(e){
+      if(!dragState) return;
+      var t = e.touches[0];
+      moveDrag(t.clientX, t.clientY);
+    }, { passive: true });
+    thumb.addEventListener("touchend", function(){ endDrag(); });
+  });
+
+  function showStatus(text, isError){
+    sbStatus.textContent = text;
+    sbStatus.classList.toggle("error", !!isError);
+    sbStatus.classList.add("show");
+    clearTimeout(sbStatusTimeout);
+    sbStatusTimeout = setTimeout(function(){
+      sbStatus.classList.remove("show");
+    }, 2600);
+  }
+
+  function applyData(dataObj){
+    editables.forEach(function(el){
+      var key = el.getAttribute("data-edit-key");
+      if(dataObj[key] !== undefined){
+        el.innerHTML = dataObj[key];
+      }
+    });
+    applyMediaData(dataObj.media);
+  }
+
+  function loadLocalCache(){
+    try{
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    }catch(e){
+      return {};
+    }
+  }
+
+  // ---------- CARGA DESDE SUPABASE ----------
+  async function loadFromSupabase(){
+    try{
+      var res = await supabaseClient
+        .from(TABLE_NAME)
+        .select("data")
+        .eq("id", ROW_ID)
+        .maybeSingle();
+
+      if(res.error){
+        console.error("Supabase load error:", res.error);
+        applyData(loadLocalCache()); // fallback offline
+        showStatus("Sin conexión a Supabase, mostrando copia local", true);
+        return;
+      }
+
+      if(res.data && res.data.data){
+        applyData(res.data.data);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(res.data.data));
+      } else {
+        // No hay fila aún en Supabase: usar caché local si existe
+        applyData(loadLocalCache());
+      }
+    }catch(e){
+      console.error("Supabase load exception:", e);
+      applyData(loadLocalCache());
+      showStatus("Sin conexión a Supabase, mostrando copia local", true);
+    }
+  }
+
+  // ---------- GUARDADO EN SUPABASE ----------
+  async function saveAllEdits(){
+    var data = {};
+    editables.forEach(function(el){
+      var key = el.getAttribute("data-edit-key");
+      data[key] = el.innerHTML;
+    });
+    data.media = mediaEdits;
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+    try{
+      var res = await supabaseClient
+        .from(TABLE_NAME)
+        .upsert({ id: ROW_ID, data: data, updated_at: new Date().toISOString() });
+
+      if(res.error){
+        console.error("Supabase save error:", res.error);
+        showStatus("Error al guardar en Supabase (guardado localmente)", true);
+        return;
+      }
+      showSavedMsg();
+    }catch(e){
+      console.error("Supabase save exception:", e);
+      showStatus("Error al guardar en Supabase (guardado localmente)", true);
+    }
+  }
+
+  function showSavedMsg(){
+    saveMsg.classList.add("show");
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(function(){
+      saveMsg.classList.remove("show");
+    }, 1600);
+  }
+
+  function setEditing(on){
+    editing = on;
+    body.classList.toggle("edit-mode", editing);
+    toggleBtn.classList.toggle("active", editing);
+    toggleBtn.textContent = editing ? "✓ Salir del modo edición" : "✎ Editar textos";
+    resetBtn.classList.toggle("show", editing);
+    editables.forEach(function(el){
+      el.setAttribute("contenteditable", editing ? "true" : "false");
+    });
+  }
+
+  editables.forEach(function(el){
+    el.addEventListener("input", function(){
+      clearTimeout(el._saveDebounce);
+      el._saveDebounce = setTimeout(saveAllEdits, 700);
+    });
+    el.addEventListener("blur", saveAllEdits);
+  });
+
+  // ---------- MODAL DE CONTRASEÑA ----------
+  function openPasswordModal(){
+    pwError.classList.remove("show");
+    pwInput.value = "";
+    pwOverlay.classList.add("show");
+    setTimeout(function(){ pwInput.focus(); }, 50);
+  }
+
+  function closePasswordModal(){
+    pwOverlay.classList.remove("show");
+  }
+
+  function tryPassword(){
+    if(pwInput.value === EDIT_PASSWORD){
+      closePasswordModal();
+      setEditing(true);
+    } else {
+      pwError.classList.add("show");
+      pwInput.value = "";
+      pwInput.focus();
+    }
+  }
+
+  toggleBtn.addEventListener("click", function(){
+    if(editing){
+      setEditing(false);
+    } else {
+      openPasswordModal();
+    }
+  });
+
+  pwConfirmBtn.addEventListener("click", tryPassword);
+  pwCancelBtn.addEventListener("click", closePasswordModal);
+  pwInput.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ tryPassword(); }
+    if(e.key === "Escape"){ closePasswordModal(); }
+  });
+  pwOverlay.addEventListener("click", function(e){
+    if(e.target === pwOverlay){ closePasswordModal(); }
+  });
+
+  resetBtn.addEventListener("click", async function(){
+    if(confirm("¿Seguro que quieres borrar todos los cambios guardados en Supabase y volver al texto original? Esta acción no se puede deshacer.")){
+      try{
+        var res = await supabaseClient.from(TABLE_NAME).delete().eq("id", ROW_ID);
+        if(res.error){
+          console.error("Supabase delete error:", res.error);
+          showStatus("Error al restablecer en Supabase", true);
+        }
+      }catch(e){
+        console.error("Supabase delete exception:", e);
+      }
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  });
+
+  loadFromSupabase();
+})();
+</script>
+
+</body>
+</html>
