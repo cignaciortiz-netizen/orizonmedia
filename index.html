@@ -529,13 +529,16 @@
     position:relative;
     aspect-ratio:16/10;
     background:linear-gradient(160deg,#1b1f20,#08090a);
-    display:flex; align-items:flex-end; padding:14px;
   }
   .case-ph-1{ background:linear-gradient(150deg,#16302b,#0a0c0e 75%); }
   .case-ph-2{ background:linear-gradient(155deg,#1c2624,#0a0c0e 75%); }
   .case-ph-3{ background:linear-gradient(145deg,#132422,#0a0c0e 75%); }
   .case-card:hover .pf-glyph{ opacity:0.75; transform:scale(1.06); }
   .case-media span{
+    position:absolute; top:12px; left:12px; z-index:3;
+    max-width:calc(100% - 24px);
+    display:block;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     font-size:10px;
     font-weight:700;
     letter-spacing:0.08em;
@@ -543,7 +546,13 @@
     padding:6px 12px;
     border-radius:999px;
     background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(4px);
     border:1px solid rgba(255,255,255,0.12);
+  }
+  body.edit-mode .case-media span{
+    white-space:normal;
+    max-height:64px;
+    overflow-y:auto;
   }
   .case-body{ padding:22px 22px 0; }
   .case-body h3{ font-size:20px; margin-bottom:8px; }
@@ -615,6 +624,30 @@
   .pf-filter-btn:hover{ color:var(--text); border-color:rgba(45,224,194,0.45); }
   .pf-filter-btn.active{ background:var(--teal); color:#03110d; border-color:var(--teal); }
 
+  .pf-filter-item{ display:inline-flex; align-items:center; gap:5px; }
+  .pf-filter-label{ outline:none; }
+  body.edit-mode .pf-filter-btn{ cursor:text; }
+  body.edit-mode .pf-filter-label:focus{ text-decoration:underline; text-decoration-color:var(--teal); }
+  .pf-filter-del{
+    display:none; width:20px; height:20px; border-radius:50%; flex-shrink:0;
+    border:1px solid var(--card-border); background:var(--card); color:var(--text-dim);
+    font-size:12px; align-items:center; justify-content:center; cursor:pointer;
+    transition:all .2s ease;
+  }
+  body.edit-mode .pf-filter-item[data-filter-id]:not([data-filter-id="all"]) .pf-filter-del{ display:flex; }
+  .pf-filter-del:hover{ border-color:#ff6b6b; color:#ff6b6b; }
+  .pf-filter-add{
+    display:none; align-items:center; gap:4px;
+    font-family:'Inter', sans-serif;
+    font-size:11.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    padding:10px 18px; border-radius:999px;
+    border:1px dashed var(--card-border);
+    background:transparent; color:var(--text-dim);
+    cursor:pointer; transition:all .25s ease;
+  }
+  body.edit-mode .pf-filter-add{ display:inline-flex; }
+  .pf-filter-add:hover{ color:var(--teal); border-color:var(--teal); }
+
   .pf-masonry{ columns:4 220px; column-gap:20px; }
   .pf-item{
     break-inside:avoid; margin-bottom:20px;
@@ -658,12 +691,13 @@
   body.edit-mode .pf-has-media[data-media-type="image"]:not(.pf-avatar){ cursor:grab; }
   body.edit-mode .pf-has-media[data-media-type="image"]:not(.pf-avatar).pf-dragging{ cursor:grabbing; }
   .pf-reposition-hint{
-    position:absolute; top:8px; left:50%; transform:translateX(-50%);
+    position:absolute; top:8px; right:8px;
     z-index:6; font-size:10px; font-weight:600; letter-spacing:0.03em;
     color:var(--text); background:rgba(10,12,14,0.75); backdrop-filter:blur(6px);
     border:1px solid var(--card-border); border-radius:999px;
     padding:5px 10px; white-space:nowrap; pointer-events:none;
     opacity:0; transition:opacity .2s ease;
+    max-width:calc(100% - 16px); overflow:hidden; text-overflow:ellipsis;
   }
   body.edit-mode .pf-has-media[data-media-type="image"]:hover .pf-reposition-hint{ opacity:1; }
 
@@ -697,6 +731,11 @@
     padding:6px 6px 6px 10px;
   }
   body.edit-mode .pf-media-edit{ display:flex; }
+  /* separar la barra del link y el nombre de la tarjeta/etiqueta para que no se superpongan */
+  body.edit-mode .pf-overlay{ opacity:1; z-index:4; }
+  body.edit-mode .pf-overlay > div{ margin-bottom:44px; }
+  body.edit-mode .pf-tag{ z-index:7; }
+  body.edit-mode .pf-reposition-hint{ max-width:calc(100% - 90px); }
   .pf-media-input{
     flex:1; min-width:0; background:transparent; border:none;
     color:var(--text); font-size:11.5px; font-family:'Inter', sans-serif;
@@ -858,12 +897,13 @@
   }
 
   /* ---------- EDICIÓN ---------- */
+  #edit-toggle-btn{ display:none; }
+  #edit-toggle-btn.ui-visible{ display:inline-flex; }
   #edit-toggle-btn{
     position:fixed;
     right:24px;
     bottom:24px;
     z-index:9999;
-    display:inline-flex;
     align-items:center;
     gap:8px;
     padding:14px 22px;
@@ -1055,7 +1095,7 @@
 </nav>
 <button class="burger" id="navBurger" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <div class="nav-cta">
-<a class="btn btn-ghost" data-edit-key="edit-10" data-editable="true" href="#contacto">Hablemos</a>
+<a class="btn btn-ghost" data-edit-key="edit-10" data-editable="true" href="https://wa.link/p1daz4" target="_blank" rel="noopener">Hablemos</a>
 </div>
 </div>
 </header>
@@ -1066,7 +1106,6 @@
 <h1 data-edit-key="edit-17" data-editable="true">Convertimos<br/>ideas en <span class="accent">resultados</span></h1>
 <p data-edit-key="edit-31" data-editable="true">Estrategias de marketing digital, contenido de alto impacto y campañas que generan clientes y aumentan tus ventas.</p>
 <div class="hero-actions">
-<a class="btn btn-primary" data-edit-key="edit-32" data-editable="true" href="#">Ver showreel ▶</a>
 <a class="btn-link" data-edit-key="edit-33" data-editable="true" href="#casos">Ver casos de éxito →</a>
 </div>
 <div class="hero-tags-label">Agencia especializada en</div>
@@ -1088,7 +1127,7 @@
 <div class="pf-glyph"><svg viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="M21 15l-5-5-9 9"></path></svg></div>
 </div>
 </section>
-<div class="floating-cta">HABLEMOS ✉</div>
+<a class="floating-cta" href="https://wa.link/p1daz4" target="_blank" rel="noopener">HABLEMOS ✉</a>
 <section class="stats">
 <div class="wrap stats-grid">
 <div class="stat">
@@ -1245,12 +1284,8 @@
 <a class="btn-link" data-edit-key="edit-92" data-editable="true" href="#">Ver todo el trabajo →</a>
 </div>
 
-<div class="pf-filters">
-  <button class="pf-filter-btn active" data-pf-filter="all">Todo</button>
-  <button class="pf-filter-btn" data-pf-filter="video">Producción de Video</button>
-  <button class="pf-filter-btn" data-pf-filter="meta">Meta Ads</button>
-  <button class="pf-filter-btn" data-pf-filter="ig">Campañas Instagram</button>
-  <button class="pf-filter-btn" data-pf-filter="brand">Branding</button>
+<div class="pf-filters" id="pfFilters">
+  <!-- Las etiquetas se generan dinámicamente vía JS (editables en modo edición) -->
 </div>
 
 <div class="pf-masonry" id="pfMasonry">
@@ -1432,7 +1467,7 @@
 <div class="mid">
 <p data-edit-key="edit-75" data-editable="true">Cuéntanos tu proyecto y te ayudaremos a diseñar una estrategia que genere resultados reales.</p>
 </div>
-<a class="btn btn-primary" href="#">Agendar llamada →</a>
+<a class="btn btn-primary" href="https://wa.link/p1daz4" target="_blank" rel="noopener">Agendar llamada →</a>
 </section>
 <footer>
 <div class="wrap">
@@ -1472,21 +1507,6 @@
 
 <script>
 (function(){
-  // Filtro de categorías del Portafolio
-  var pfBtns = document.querySelectorAll('.pf-filter-btn');
-  var pfItems = document.querySelectorAll('.pf-item');
-  pfBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      pfBtns.forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      var f = btn.getAttribute('data-pf-filter');
-      pfItems.forEach(function(item){
-        var match = f === 'all' || item.getAttribute('data-pf-cat') === f;
-        item.style.display = match ? '' : 'none';
-      });
-    });
-  });
-
   // Menú móvil (hamburguesa)
   var burger = document.getElementById('navBurger');
   var navLinks = document.getElementById('navLinks');
@@ -1535,6 +1555,139 @@
   var editing = false;
   var saveTimeout = null;
   var sbStatusTimeout = null;
+
+  // ---------- ETIQUETAS DEL PORTAFOLIO (editables: añadir/borrar/renombrar) ----------
+  var pfFiltersContainer = document.getElementById("pfFilters");
+  var pfItems = Array.prototype.slice.call(document.querySelectorAll(".pf-item"));
+  var defaultPfFilters = [
+    { id:"all",   label:"Todo" },
+    { id:"video", label:"Producción de Video" },
+    { id:"meta",  label:"Meta Ads" },
+    { id:"ig",    label:"Campañas Instagram" },
+    { id:"brand", label:"Branding" }
+  ];
+  var pfFilters = defaultPfFilters.slice();
+  var activePfFilter = "all";
+
+  function renderPfFilters(){
+    if(!pfFiltersContainer) return;
+    pfFiltersContainer.innerHTML = "";
+    pfFilters.forEach(function(f){
+      var item = document.createElement("div");
+      item.className = "pf-filter-item";
+      item.setAttribute("data-filter-id", f.id);
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pf-filter-btn" + (f.id === activePfFilter ? " active" : "");
+      btn.setAttribute("data-pf-filter", f.id);
+
+      var label = document.createElement("span");
+      label.className = "pf-filter-label";
+      label.textContent = f.label;
+      label.setAttribute("contenteditable", editing ? "true" : "false");
+      btn.appendChild(label);
+      item.appendChild(btn);
+
+      if(f.id !== "all"){
+        var del = document.createElement("button");
+        del.type = "button";
+        del.className = "pf-filter-del";
+        del.title = "Eliminar etiqueta";
+        del.textContent = "×";
+        item.appendChild(del);
+      }
+      pfFiltersContainer.appendChild(item);
+    });
+
+    var addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "pf-filter-add";
+    addBtn.textContent = "+ Añadir etiqueta";
+    pfFiltersContainer.appendChild(addBtn);
+  }
+
+  function applyPfFilter(id){
+    activePfFilter = id;
+    if(!pfFiltersContainer) return;
+    pfFiltersContainer.querySelectorAll(".pf-filter-btn").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-pf-filter") === id);
+    });
+    pfItems.forEach(function(item){
+      var match = id === "all" || item.getAttribute("data-pf-cat") === id;
+      item.style.display = match ? "" : "none";
+    });
+  }
+
+  function savePfFilters(){
+    saveAllEdits();
+  }
+
+  if(pfFiltersContainer){
+    pfFiltersContainer.addEventListener("click", function(e){
+      var del = e.target.closest(".pf-filter-del");
+      if(del){
+        e.preventDefault(); e.stopPropagation();
+        if(!editing) return;
+        var delItem = del.closest(".pf-filter-item");
+        var delId = delItem.getAttribute("data-filter-id");
+        pfFilters = pfFilters.filter(function(f){ return f.id !== delId; });
+        if(activePfFilter === delId) activePfFilter = "all";
+        renderPfFilters();
+        savePfFilters();
+        return;
+      }
+
+      var addBtn = e.target.closest(".pf-filter-add");
+      if(addBtn){
+        e.preventDefault();
+        var newId = "tag-" + Date.now().toString(36);
+        pfFilters.push({ id:newId, label:"Nueva etiqueta" });
+        renderPfFilters();
+        savePfFilters();
+        var newLabel = pfFiltersContainer.querySelector('[data-filter-id="' + newId + '"] .pf-filter-label');
+        if(newLabel){
+          newLabel.focus();
+          var range = document.createRange();
+          range.selectNodeContents(newLabel);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        return;
+      }
+
+      var btn = e.target.closest(".pf-filter-btn");
+      if(btn && !editing){
+        applyPfFilter(btn.getAttribute("data-pf-filter"));
+      }
+    });
+
+    pfFiltersContainer.addEventListener("keydown", function(e){
+      var label = e.target.closest ? e.target.closest(".pf-filter-label") : null;
+      if(label && e.key === "Enter"){
+        e.preventDefault();
+        label.blur();
+      }
+    });
+
+    pfFiltersContainer.addEventListener("blur", function(e){
+      var label = e.target.closest ? e.target.closest(".pf-filter-label") : null;
+      if(!label) return;
+      var item = label.closest(".pf-filter-item");
+      var id = item.getAttribute("data-filter-id");
+      var f = pfFilters.filter(function(x){ return x.id === id; })[0];
+      if(f){
+        var text = label.textContent.replace(/\s+/g, " ").trim();
+        f.label = text || f.label;
+        label.textContent = f.label;
+      }
+      savePfFilters();
+    }, true);
+  }
+
+  renderPfFilters();
+  applyPfFilter("all");
 
   // ---------- MEDIOS DEL PORTAFOLIO (foto/video por link) ----------
   function detectMediaType(url){
@@ -1748,6 +1901,7 @@
 
     thumb.addEventListener("mousedown", function(e){
       if(e.target === input || e.target === saveBtn || e.target === clearBtn) return;
+      if(e.target.closest && e.target.closest("[data-editable], .pf-media-edit")) return;
       if(thumb.getAttribute("data-media-type") !== "image") return;
       e.preventDefault();
       startDrag(e.clientX, e.clientY);
@@ -1762,6 +1916,7 @@
     });
 
     thumb.addEventListener("touchstart", function(e){
+      if(e.target.closest && e.target.closest("[data-editable], .pf-media-edit")) return;
       if(thumb.getAttribute("data-media-type") !== "image") return;
       var t = e.touches[0];
       startDrag(t.clientX, t.clientY);
@@ -1792,6 +1947,12 @@
       }
     });
     applyMediaData(dataObj.media);
+    if(dataObj.pfFilters && dataObj.pfFilters.length){
+      pfFilters = dataObj.pfFilters;
+      if(!pfFilters.some(function(f){ return f.id === activePfFilter; })) activePfFilter = "all";
+      renderPfFilters();
+      applyPfFilter(activePfFilter);
+    }
   }
 
   function loadLocalCache(){
@@ -1840,6 +2001,7 @@
       data[key] = el.innerHTML;
     });
     data.media = mediaEdits;
+    data.pfFilters = pfFilters;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
@@ -1877,6 +2039,11 @@
     editables.forEach(function(el){
       el.setAttribute("contenteditable", editing ? "true" : "false");
     });
+    if(pfFiltersContainer){
+      pfFiltersContainer.querySelectorAll(".pf-filter-label").forEach(function(el){
+        el.setAttribute("contenteditable", editing ? "true" : "false");
+      });
+    }
   }
 
   editables.forEach(function(el){
@@ -1909,6 +2076,13 @@
       pwInput.focus();
     }
   }
+
+  document.addEventListener("keydown", function(e){
+    if(e.ctrlKey && e.key === "{"){
+      e.preventDefault();
+      toggleBtn.classList.toggle("ui-visible");
+    }
+  });
 
   toggleBtn.addEventListener("click", function(){
     if(editing){
