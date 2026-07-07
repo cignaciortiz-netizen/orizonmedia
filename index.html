@@ -151,7 +151,7 @@
   }
   .nav-links a:hover{ color:var(--text); }
   .nav-cta{ display:flex; align-items:center; }
-  .burger{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; }
+  .burger{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; padding:4px 6px; }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -327,7 +327,16 @@
     pointer-events:none;
   }
   @media(max-width:900px){
-    .hero-visual{ width:100% !important; height:auto !important; aspect-ratio:1.5/1 !important; }
+    .hero-visual{
+      width:100% !important;
+      height:auto !important;
+      aspect-ratio:16/10 !important;
+      min-height:0 !important;
+    }
+    body.edit-mode .hero-visual{ min-height:0; }
+  }
+  @media(max-width:480px){
+    .hero-visual{ aspect-ratio:4/3 !important; border-radius:12px; }
   }
 
   /* ---------- PHONE CHAIN VISUAL ---------- */
@@ -809,13 +818,43 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 980px){
-    .nav-links{ display:none; }
+    .nav{ position:relative; }
+    .burger{ display:inline-flex; align-items:center; justify-content:center; order:3; }
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:100%; left:0; right:0;
+      flex-direction:column;
+      gap:0;
+      background:var(--bg-soft);
+      border-bottom:1px solid var(--card-border);
+      padding:6px 32px 18px;
+      box-shadow:0 16px 30px rgba(0,0,0,0.35);
+    }
+    .nav-links.nav-open{ display:flex; }
+    .nav-links a{
+      padding:13px 0;
+      border-bottom:1px solid var(--card-border);
+    }
+    .nav-links a:last-child{ border-bottom:none; }
     .hero-grid{ grid-template-columns:1fr; }
     .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:24px; }
     .stat{ border-right:none; }
     .cases-grid, .services-grid, .testi-grid{ grid-template-columns:1fr; }
     .cta-final{ flex-direction:column; align-items:flex-start; }
     .floating-cta{ display:none; }
+  }
+
+  @media (max-width:480px){
+    .wrap{ padding:0 20px; }
+    .nav-links{ padding:6px 20px 18px; }
+    .stats-grid{ grid-template-columns:1fr; }
+    .stat{ padding:16px 0; border-bottom:1px solid var(--card-border); }
+    .stat:last-child{ border-bottom:none; }
+  }
+
+  @media (max-width:420px){
+    .pf-masonry{ columns:1; }
   }
 
   /* ---------- EDICIÓN ---------- */
@@ -1005,7 +1044,7 @@
 <header>
 <div class="wrap nav">
 <div class="logo" data-edit-key="edit-1" data-editable="true">Synchrony</div>
-<nav class="nav-links">
+<nav class="nav-links" id="navLinks">
 <a data-edit-key="edit-3" data-editable="true" href="#inicio">Inicio</a>
 <a data-edit-key="edit-4" data-editable="true" href="#casos">Casos de Éxito</a>
 <a data-edit-key="edit-5" data-editable="true" href="#servicios">Servicios</a>
@@ -1014,6 +1053,7 @@
 <a data-edit-key="edit-8" data-editable="true" href="#testimonios">Testimonios</a>
 <a data-edit-key="edit-9" data-editable="true" href="#contacto">Contacto</a>
 </nav>
+<button class="burger" id="navBurger" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <div class="nav-cta">
 <a class="btn btn-ghost" data-edit-key="edit-10" data-editable="true" href="#contacto">Hablemos</a>
 </div>
@@ -1446,6 +1486,24 @@
       });
     });
   });
+
+  // Menú móvil (hamburguesa)
+  var burger = document.getElementById('navBurger');
+  var navLinks = document.getElementById('navLinks');
+  if(burger && navLinks){
+    burger.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.textContent = open ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.textContent = '☰';
+      });
+    });
+  }
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
