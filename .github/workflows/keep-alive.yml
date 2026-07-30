@@ -2,8 +2,9 @@ name: Supabase Keep Alive
 
 on:
   schedule:
-    - cron: '0 9 * * 1'  # todos los lunes a las 9:00 UTC
-  workflow_dispatch: {}   # permite ejecutarlo manualmente para probar
+    - cron: '0 9 * * 1'  # lunes 9:00 UTC
+    - cron: '0 9 * * 5'  # viernes 9:00 UTC
+  workflow_dispatch: {}
 
 jobs:
   ping:
