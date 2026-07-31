@@ -626,6 +626,33 @@
     display:flex; align-items:center; justify-content:center;
     color:var(--teal);
   }
+  .stat-icon-wrap{ position:relative; flex-shrink:0; }
+  .stat-icon-toggle{
+    display:none;
+    position:absolute; top:-4px; right:-4px; z-index:6;
+    width:22px; height:22px; border-radius:50%;
+    align-items:center; justify-content:center;
+    background:#101314; border:1px solid rgba(255,255,255,0.18);
+    color:#fff; font-size:11px; cursor:pointer; padding:0;
+  }
+  body.edit-mode .stat-icon-wrap:hover .stat-icon-toggle{ display:flex; }
+  .stat-icon-picker{
+    display:none;
+    position:absolute; top:calc(100% + 10px); left:0; z-index:20;
+    width:184px; padding:10px;
+    grid-template-columns:repeat(4,1fr); gap:6px;
+    background:#101314; border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,0.45);
+  }
+  .stat-icon-picker.open{ display:grid; }
+  .stat-icon-picker button{
+    width:36px; height:36px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    color:var(--teal); cursor:pointer;
+  }
+  .stat-icon-picker button:hover{ background:rgba(45,224,194,0.16); border-color:rgba(45,224,194,0.45); }
+  .stat-icon-picker svg{ width:17px; height:17px; }
   .stat-num{ font-size:24px; font-weight:800; font-family:'Archivo Black',sans-serif; }
   .stat-label{ font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; margin-top:2px;}
   .stat-sub{ font-size:11.5px; color:var(--text-faint); margin-top:2px; }
@@ -648,6 +675,48 @@
     grid-template-columns:repeat(3,1fr);
     gap:24px;
     align-items:stretch;
+  }
+  .pricing-sim{
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    background:var(--card);
+    padding:32px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .pricing-sim-header h3{ font-size:20px; margin-bottom:6px; }
+  .pricing-sim-header p{ color:var(--text-dim); font-size:13.5px; margin-bottom:22px; }
+  .sim-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0; border-bottom:1px solid var(--card-border); gap:16px;
+  }
+  .sim-row-label strong{ display:block; font-size:14px; }
+  .sim-row-label span{ display:block; font-size:12px; color:var(--text-faint); margin-top:2px; }
+  .sim-stepper{ display:flex; align-items:center; gap:12px; flex-shrink:0; }
+  .sim-step-btn{
+    width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--card-border); background:transparent; color:var(--text);
+    cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; padding:0;
+  }
+  .sim-step-btn:hover{ border-color:var(--teal); color:var(--teal); }
+  .sim-step-val{ min-width:22px; text-align:center; font-weight:800; font-size:15px; }
+  .sim-check-row{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:14px 0; border-bottom:1px solid var(--card-border); cursor:pointer;
+  }
+  .sim-check-row input{ margin-top:3px; width:16px; height:16px; accent-color:var(--teal); flex-shrink:0; }
+  .sim-check-row strong{ display:block; font-size:14px; }
+  .sim-check-row span{ display:block; font-size:12px; color:var(--text-faint); margin-top:2px; }
+  .sim-sub-row{ padding-left:28px; }
+  .pricing-sim-total{ margin-top:18px; padding-top:6px; }
+  .sim-total-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .sim-total-row span{ font-size:13px; color:var(--text-dim); }
+  .sim-total-row strong{ font-size:24px; color:var(--teal); font-family:'Archivo Black',sans-serif; }
+  .sim-total-setup strong{ font-size:15px; color:var(--text); font-family:inherit; }
+  .sim-cta{ display:block; text-align:center; margin-top:18px; width:100%; }
+  @media (max-width:520px){
+    .pricing-sim{ padding:22px 18px; }
+    .sim-row{ flex-wrap:wrap; }
   }
   .pricing-card{
     border:1px solid var(--card-border);
@@ -761,6 +830,7 @@
     overflow-y:auto;
   }
   .case-body{ padding:22px 22px 0; }
+  .case-body h3, .case-body p{ text-align:left !important; }
   .case-body h3{ font-size:20px; margin-bottom:8px; }
   .case-body p{ color:var(--text-dim); font-size:13.5px; line-height:1.5; margin-bottom:18px; }
   .case-metrics{
@@ -768,21 +838,26 @@
     grid-template-columns:repeat(3,1fr);
     border-top:1px solid var(--card-border);
   }
-  .case-metrics div{ padding:16px 0 20px; }
+  .case-metrics div{ padding:16px 0 20px; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; }
   .case-metrics div:nth-child(2){ border-left:1px solid var(--card-border); border-right:1px solid var(--card-border); padding-left:16px; padding-right:16px;}
   .case-metrics div:nth-child(1){ padding-left:0; }
   .case-metrics label{
     display:block;
     font-size:10px;
+    line-height:13px;
     color:var(--text-faint);
     text-transform:uppercase;
     letter-spacing:0.06em;
     margin-bottom:6px;
+    text-align:center !important;
+    min-height:26px;
   }
   .case-metrics strong{
     font-size:16px;
     color:var(--teal);
     font-weight:800;
+    text-align:center !important;
+    display:block;
   }
 
   /* ---------- SERVICES ---------- */
@@ -856,6 +931,43 @@
   .pf-filter-add:hover{ color:var(--teal); border-color:var(--teal); }
 
   .pf-masonry{ columns:4 220px; column-gap:20px; }
+  .pf-item-remove{
+    display:none;
+    position:absolute; top:8px; right:8px; z-index:8;
+    width:26px; height:26px; border-radius:50%;
+    align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.65); border:1px solid rgba(255,255,255,0.25);
+    color:#fff; cursor:pointer; font-size:12px; padding:0;
+  }
+  body.edit-mode .pf-item:hover .pf-item-remove{ display:flex; }
+  .pf-add-wrap{ display:none; margin-top:24px; position:relative; text-align:center; }
+  body.edit-mode .pf-add-wrap{ display:block; }
+  .pf-add-btn{
+    padding:11px 20px; border-radius:999px;
+    border:1px dashed var(--card-border); background:transparent;
+    color:var(--text-dim); cursor:pointer; font-size:13px; font-weight:600;
+  }
+  .pf-add-btn:hover{ border-color:var(--teal); color:var(--teal); }
+  .pf-add-picker{
+    display:none;
+    position:absolute; left:50%; transform:translateX(-50%);
+    top:calc(100% + 10px); z-index:20; gap:8px; padding:12px;
+    background:#101314; border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,0.45);
+  }
+  .pf-add-picker.open{ display:flex; }
+  .pf-add-picker button{
+    display:flex; flex-direction:column; align-items:center; gap:7px;
+    padding:10px 14px; border-radius:8px;
+    border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04);
+    color:var(--text-dim); cursor:pointer; font-size:10.5px; font-weight:600;
+  }
+  .pf-add-picker button:hover{ border-color:var(--teal); color:var(--teal); }
+  .pf-add-picker .pf-shape{ border:1.6px solid currentColor; border-radius:4px; }
+  .pf-add-picker .pf-shape.tall{ width:19px; height:30px; }
+  .pf-add-picker .pf-shape.square{ width:26px; height:26px; }
+  .pf-add-picker .pf-shape.wide{ width:32px; height:22px; }
+  .pf-add-picker .pf-shape.portrait{ width:22px; height:33px; }
   .pf-item{
     break-inside:avoid; margin-bottom:20px;
     border-radius:var(--radius); overflow:hidden; position:relative;
@@ -1007,6 +1119,28 @@
     font-weight:700; font-size:15px; color:var(--text-dim);
     white-space:nowrap;
   }
+  .logos-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:24px; gap:12px; flex-wrap:wrap;
+  }
+  .logos-add-btn{
+    display:none;
+    padding:8px 16px; border-radius:999px;
+    border:1px dashed var(--card-border); background:transparent;
+    color:var(--text-dim); cursor:pointer; font-size:12.5px; font-weight:600;
+  }
+  .logos-add-btn:hover{ border-color:var(--teal); color:var(--teal); }
+  body.edit-mode .logos-add-btn{ display:inline-block; }
+  .logos-item{ position:relative; display:inline-flex; }
+  .logos-item-remove{
+    display:none;
+    position:absolute; top:-9px; right:-9px; z-index:3;
+    width:18px; height:18px; border-radius:50%;
+    align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.3);
+    color:#fff; font-size:9px; cursor:pointer; padding:0;
+  }
+  body.edit-mode .logos-item:hover .logos-item-remove{ display:flex; }
   @keyframes logosScroll{
     from{ transform:translateX(0); }
     to{ transform:translateX(-50%); }
@@ -1038,7 +1172,25 @@
     border-radius:var(--radius);
     padding:26px;
     background:var(--card);
+    position:relative;
   }
+  .testi-card-remove{
+    display:none;
+    position:absolute; top:12px; right:12px; z-index:3;
+    width:24px; height:24px; border-radius:50%;
+    align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2);
+    color:#fff; cursor:pointer; font-size:11px; padding:0;
+  }
+  body.edit-mode .testi-card:hover .testi-card-remove{ display:flex; }
+  .testi-add-btn{
+    display:none;
+    padding:8px 16px; border-radius:999px;
+    border:1px dashed var(--card-border); background:transparent;
+    color:var(--text-dim); cursor:pointer; font-size:12.5px; font-weight:600;
+  }
+  .testi-add-btn:hover{ border-color:var(--teal); color:var(--teal); }
+  body.edit-mode .testi-add-btn{ display:inline-block; }
   .stars{ color:var(--teal); font-size:14px; letter-spacing:2px; margin-bottom:16px; }
   .testi-card p{ font-size:14.5px; color:var(--text-dim); line-height:1.6; margin-bottom:24px; text-transform:none; }
   .testi-person{ display:flex; align-items:center; gap:12px; }
@@ -1392,7 +1544,11 @@
 <section class="stats">
 <div class="wrap stats-grid">
 <div class="stat">
-<div class="stat-icon" data-edit-key="edit-117" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><line x1="12" x2="12" y1="3" y2="21"></line><path d="M16 7.5c0-1.5-1.8-2.5-4-2.5s-4 1-4 2.5c0 1.5 1.5 2 4 2.5s4 1 4 2.5-1.8 2.5-4 2.5-4-1-4-2.5"></path></svg></div>
+<div class="stat-icon-wrap">
+<div class="stat-icon" data-edit-key="edit-117" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg></div>
+<button class="stat-icon-toggle" title="Cambiar ícono" type="button">✎</button>
+<div class="stat-icon-picker"></div>
+</div>
 <div>
 <div class="stat-num" data-edit-key="edit-118" data-editable="true">+3.2M</div>
 <div class="stat-label" data-edit-key="edit-119" data-editable="true">USD generados</div>
@@ -1400,7 +1556,11 @@
 </div>
 </div>
 <div class="stat">
-<div class="stat-icon" data-edit-key="edit-121" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><polyline points="3 17 9 11 13 15 21 6"></polyline><polyline points="14 6 21 6 21 13"></polyline></svg></div>
+<div class="stat-icon-wrap">
+<div class="stat-icon" data-edit-key="edit-121" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg></div>
+<button class="stat-icon-toggle" title="Cambiar ícono" type="button">✎</button>
+<div class="stat-icon-picker"></div>
+</div>
 <div>
 <div class="stat-num" data-edit-key="edit-122" data-editable="true">8.6X</div>
 <div class="stat-label" data-edit-key="edit-123" data-editable="true">ROAS promedio</div>
@@ -1408,7 +1568,11 @@
 </div>
 </div>
 <div class="stat">
-<div class="stat-icon" data-edit-key="edit-125" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><circle cx="12" cy="12" r="9"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" x2="9.01" y1="9" y2="9"></line><line x1="15" x2="15.01" y1="9" y2="9"></line></svg></div>
+<div class="stat-icon-wrap">
+<div class="stat-icon" data-edit-key="edit-125" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><rect height="14" rx="2" width="20" x="2" y="7"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+<button class="stat-icon-toggle" title="Cambiar ícono" type="button">✎</button>
+<div class="stat-icon-picker"></div>
+</div>
 <div>
 <div class="stat-num" data-edit-key="edit-126" data-editable="true">+150</div>
 <div class="stat-label" data-edit-key="edit-127" data-editable="true">Marcas impulsadas</div>
@@ -1416,7 +1580,11 @@
 </div>
 </div>
 <div class="stat">
-<div class="stat-icon" data-edit-key="edit-129" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12.5 11 15.5 16 9"></polyline></svg></div>
+<div class="stat-icon-wrap">
+<div class="stat-icon" data-edit-key="edit-129" data-editable="true"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg></div>
+<button class="stat-icon-toggle" title="Cambiar ícono" type="button">✎</button>
+<div class="stat-icon-picker"></div>
+</div>
 <div>
 <div class="stat-num" data-edit-key="edit-130" data-editable="true">+480K</div>
 <div class="stat-label" data-edit-key="edit-131" data-editable="true">Clientes generados</div>
@@ -1501,7 +1669,6 @@
 <div class="eyebrow" data-edit-key="edit-13" data-editable="true">Qué hacemos</div>
 <div class="section-head">
 <h2 data-edit-key="edit-19" data-editable="true">Servicios</h2>
-<a class="btn-link" data-edit-key="edit-77" data-editable="true" href="#">Ver todos los servicios →</a>
 </div>
 <div class="services-grid">
 <div class="service-card">
@@ -1539,6 +1706,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M15 10l5-3v10l-5-3"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-93" data-editable="true">Producción de Video</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-94" data-editable="true">Nightfall — Video de Marca</strong><span data-edit-key="edit-95" data-editable="true">Cinemático / 60s</span></div></div>
     </div>
@@ -1551,6 +1719,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M12 8v8"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-96" data-editable="true">Meta Ads Campaign</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-97" data-editable="true">Aurora — Set de Estáticos</strong><span data-edit-key="edit-98" data-editable="true">Meta / Carrusel</span></div></div>
     </div>
@@ -1563,6 +1732,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-99" data-editable="true">Campaña Instagram</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-100" data-editable="true">Reverie — Serie de Reels</strong><span data-edit-key="edit-101" data-editable="true">Instagram / Reels</span></div></div>
     </div>
@@ -1575,6 +1745,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-102" data-editable="true">Branding</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-103" data-editable="true">Solace — Sistema de Identidad</strong><span data-edit-key="edit-104" data-editable="true">Branding / Suite Completa</span></div></div>
     </div>
@@ -1587,6 +1758,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M15 10l5-3v10l-5-3"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-105" data-editable="true">Producción de Video</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-106" data-editable="true">Halcyon — Video de Producto</strong><span data-edit-key="edit-107" data-editable="true">Cinemático / 30s</span></div></div>
     </div>
@@ -1599,6 +1771,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-108" data-editable="true">Branding</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-109" data-editable="true">Verano — Packaging</strong><span data-edit-key="edit-110" data-editable="true">Branding / Empaque</span></div></div>
     </div>
@@ -1611,6 +1784,7 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-111" data-editable="true">Campaña Instagram</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-112" data-editable="true">Meridian — Refresh de Grid</strong><span data-edit-key="edit-113" data-editable="true">Instagram / Feed</span></div></div>
     </div>
@@ -1623,16 +1797,29 @@
         <button type="button" class="pf-media-clear" title="Quitar">✕</button>
       </div>
       <div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M12 8v8"/></svg></div>
+      <button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>
       <span class="pf-tag" data-edit-key="edit-114" data-editable="true">Meta Ads Campaign</span>
       <div class="pf-overlay"><div><strong data-edit-key="edit-115" data-editable="true">Fathom — Set de Video Ads</strong><span data-edit-key="edit-116" data-editable="true">Meta / Video</span></div></div>
     </div>
+  </div>
+</div>
+<div class="pf-add-wrap">
+  <button type="button" class="pf-add-btn" id="pfAddBtn">+ Añadir recuadro</button>
+  <div class="pf-add-picker" id="pfAddPicker">
+    <button type="button" data-ratio="tall"><span class="pf-shape tall"></span>Vertical</button>
+    <button type="button" data-ratio="square"><span class="pf-shape square"></span>Cuadrado</button>
+    <button type="button" data-ratio="wide"><span class="pf-shape wide"></span>Horizontal</button>
+    <button type="button" data-ratio="portrait"><span class="pf-shape portrait"></span>Retrato</button>
   </div>
 </div>
 </div>
 </section>
 <section class="logos-section" id="clientes">
 <div class="wrap">
-<div class="eyebrow" data-edit-key="edit-14" data-editable="true" style="margin-bottom:24px;">Marcas que confían en nosotros</div>
+<div class="logos-head">
+<div class="eyebrow" data-edit-key="edit-14" data-editable="true" style="margin-bottom:0;">Marcas que confían en nosotros</div>
+<button type="button" class="logos-add-btn" id="logosAddBtn">+ Añadir marca</button>
+</div>
 <div class="logos-marquee">
 <div class="logos-track" id="logosTrack">
 <div class="logos-row" id="logosRowOriginal">
@@ -1643,6 +1830,9 @@
 <div data-edit-key="edit-63" data-editable="true">f logoipsum</div>
 <div data-edit-key="edit-64" data-editable="true">▷ logoipsum</div>
 <div data-edit-key="edit-65" data-editable="true">logo logo ipsum</div>
+<div data-edit-key="edit-300" data-editable="true">TRAX TIRES</div>
+<div data-edit-key="edit-301" data-editable="true">MDM GLOBAL TRADE</div>
+<div data-edit-key="edit-302" data-editable="true">PISTACHOS RBS</div>
 </div>
 </div>
 </div>
@@ -1654,40 +1844,49 @@
 <div class="section-head">
 <h2 data-edit-key="edit-201" data-editable="true">Tarifario</h2>
 </div>
-<div class="pricing-grid">
-<div class="pricing-card">
-<div class="pricing-name" data-edit-key="edit-202" data-editable="true">Contenido Orgánico</div>
-<div class="pricing-price" data-edit-key="edit-203" data-editable="true">CLP 150.000</div>
-<ul class="pricing-features">
-<li data-edit-key="edit-204" data-editable="true">3 videos grabados en una sesión (guion, dirección y edición)</li>
-<li data-edit-key="edit-205" data-editable="true">1 pieza gráfica (post o story)</li>
-<li data-edit-key="edit-206" data-editable="true">Reporte mensual de resultados</li>
-</ul>
+<div class="pricing-sim">
+<div class="pricing-sim-header">
+<h3 data-edit-key="edit-310" data-editable="true">Arma tu plan a medida</h3>
+<p data-edit-key="edit-311" data-editable="true">Marca lo que necesitas y mira el precio estimado al instante.</p>
 </div>
-<div class="pricing-card">
-<div class="pricing-name" data-edit-key="edit-215" data-editable="true">Campaña Digital (Meta Ads)</div>
-<div class="pricing-price" data-edit-key="edit-216" data-editable="true">CLP 250.000</div>
-<ul class="pricing-features">
-<li data-edit-key="edit-217" data-editable="true">Configuración de cuenta desde cero</li>
-<li data-edit-key="edit-218" data-editable="true">Estrategia y montaje de campaña</li>
-<li data-edit-key="edit-219" data-editable="true">1 video publicitario para anuncios</li>
-<li data-edit-key="edit-220" data-editable="true">3 piezas gráficas para anuncios</li>
-<li data-edit-key="edit-221" data-editable="true">Optimización inicial</li>
-<li data-edit-key="edit-222" data-editable="true">Reporte mensual de resultados</li>
-</ul>
+<div class="pricing-sim-body">
+<div class="sim-row">
+<div class="sim-row-label">
+<strong data-edit-key="edit-312" data-editable="true">Videos por mes</strong>
+<span data-edit-key="edit-313" data-editable="true">Grabación, guion y edición</span>
 </div>
-<div class="pricing-card pricing-featured">
-<div class="pricing-badge" data-edit-key="edit-207" data-editable="true">Más completo</div>
-<div class="pricing-name" data-edit-key="edit-208" data-editable="true">Paquete Digital Completo</div>
-<div class="pricing-price" data-edit-key="edit-209" data-editable="true">CLP 400.000</div>
-<ul class="pricing-features">
-<li data-edit-key="edit-210" data-editable="true">3 videos grabados en una sesión (guion, dirección y edición)</li>
-<li data-edit-key="edit-211" data-editable="true">Adaptación de los videos para campañas de Meta Ads</li>
-<li data-edit-key="edit-212" data-editable="true">4 piezas gráficas (1 orgánica + 3 para anuncios)</li>
-<li data-edit-key="edit-213" data-editable="true">Configuración y gestión de campaña en Meta Ads</li>
-<li data-edit-key="edit-214" data-editable="true">Reporte mensual de resultados</li>
-</ul>
+<div class="sim-stepper" data-sim-videos>
+<button type="button" class="sim-step-btn" data-step="-1">−</button>
+<span class="sim-step-val">0</span>
+<button type="button" class="sim-step-btn" data-step="1">+</button>
 </div>
+</div>
+<div class="sim-row">
+<div class="sim-row-label">
+<strong data-edit-key="edit-314" data-editable="true">Piezas gráficas por mes</strong>
+<span data-edit-key="edit-315" data-editable="true">Posts o stories</span>
+</div>
+<div class="sim-stepper" data-sim-graphics>
+<button type="button" class="sim-step-btn" data-step="-1">−</button>
+<span class="sim-step-val">0</span>
+<button type="button" class="sim-step-btn" data-step="1">+</button>
+</div>
+</div>
+<label class="sim-check-row">
+<input id="simAdsMgmt" type="checkbox">
+<div>
+<strong data-edit-key="edit-316" data-editable="true">Gestión de campaña Meta Ads (mensual)</strong>
+<span data-edit-key="edit-317" data-editable="true">$200.000/mes — la inversión en pauta publicitaria es aparte y se paga directo a Meta</span>
+</div>
+</label>
+</div>
+<div class="pricing-sim-total">
+<div class="sim-total-row">
+<span data-edit-key="edit-318" data-editable="true">Total mensual estimado</span>
+<strong id="simTotalMonthly">$0</strong>
+</div>
+</div>
+<a class="btn btn-primary sim-cta" href="https://wa.link/p1daz4" rel="noopener" target="_blank"><span data-edit-key="edit-319" data-editable="true">Cotizar por WhatsApp →</span></a>
 </div>
 </div>
 </section>
@@ -1696,10 +1895,11 @@
 <div class="eyebrow" data-edit-key="edit-15" data-editable="true">Testimonios</div>
 <div class="section-head">
 <h2 data-edit-key="edit-20" data-editable="true">Lo que dicen nuestros clientes</h2>
-<a class="btn-link" data-edit-key="edit-78" data-editable="true" href="#">Ver más testimonios →</a>
+<button type="button" class="testi-add-btn" id="testiAddBtn">+ Añadir testimonio</button>
 </div>
-<div class="testi-grid">
+<div class="testi-grid" id="testiGrid">
 <div class="testi-card">
+<button type="button" class="testi-card-remove" title="Quitar testimonio">✕</button>
 <div class="stars">★★★★★</div>
 <p data-edit-key="edit-66" data-editable="true">Synchrony cambió por completo nuestros resultados. En 3 meses duplicamos nuestras ventas y logramos un ROAS que nunca habíamos visto.</p>
 <div class="testi-person">
@@ -1715,6 +1915,7 @@
 </div>
 </div>
 <div class="testi-card">
+<button type="button" class="testi-card-remove" title="Quitar testimonio">✕</button>
 <div class="stars">★★★★★</div>
 <p data-edit-key="edit-67" data-editable="true">El equipo entiende el negocio, propone, ejecuta y entrega resultados reales. Totalmente recomendados.</p>
 <div class="testi-person">
@@ -1730,6 +1931,7 @@
 </div>
 </div>
 <div class="testi-card">
+<button type="button" class="testi-card-remove" title="Quitar testimonio">✕</button>
 <div class="stars">★★★★★</div>
 <p data-edit-key="edit-68" data-editable="true">La calidad del contenido y las campañas superaron nuestras expectativas. Profesionales y creativos.</p>
 <div class="testi-person">
@@ -2099,7 +2301,316 @@
     });
   }
 
-  mediaThumbs.forEach(function(thumb){
+  // ---------- AÑADIR / QUITAR TESTIMONIOS ----------
+  var testiState = { removed: [], extras: [] };
+  var testiGridEl = document.getElementById("testiGrid");
+
+  function buildTestiCardHTML(item){
+    return (
+      '<div class="testi-card">' +
+        '<button type="button" class="testi-card-remove" title="Quitar testimonio">✕</button>' +
+        '<div class="stars">★★★★★</div>' +
+        '<p data-edit-key="' + item.quoteKey + '" data-editable="true">' + (item.quote || "Escribe aquí el testimonio del cliente.") + '</p>' +
+        '<div class="testi-person">' +
+          '<div class="avatar pf-thumb pf-avatar" data-media-key="' + item.avatarKey + '">' +
+            '<div class="pf-media-edit">' +
+              '<input type="text" class="pf-media-input" placeholder="Link de foto (URL)">' +
+              '<button type="button" class="pf-media-save" title="Guardar">✓</button>' +
+              '<button type="button" class="pf-media-clear" title="Quitar">✕</button>' +
+            '</div>' +
+            '<div class="pf-glyph"><svg viewbox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"></circle><path d="M5 20c0-4 3.2-6.5 7-6.5s7 2.5 7 6.5"></path></svg></div>' +
+          '</div>' +
+          '<div><strong data-edit-key="' + item.nameKey + '" data-editable="true">' + (item.name || "Nombre Cliente") + '</strong><span data-edit-key="' + item.roleKey + '" data-editable="true">' + (item.role || "Cargo, Empresa") + '</span></div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function insertTestiCard(item, opts){
+    opts = opts || {};
+    var wrapper = document.createElement("div");
+    wrapper.innerHTML = buildTestiCardHTML(item);
+    var cardEl = wrapper.firstElementChild;
+    testiGridEl.appendChild(cardEl);
+
+    var thumb = cardEl.querySelector(".pf-thumb");
+    mediaThumbs.push(thumb);
+    wireMediaThumb(thumb);
+
+    Array.prototype.forEach.call(cardEl.querySelectorAll("[data-editable]"), function(el){
+      editables.push(el);
+      el.setAttribute("contenteditable", editing ? "true" : "false");
+      el.addEventListener("input", function(){
+        clearTimeout(el._saveDebounce);
+        el._saveDebounce = setTimeout(saveAllEdits, 700);
+      });
+      el.addEventListener("blur", saveAllEdits);
+    });
+
+    if(!opts.silent){
+      testiState.extras.push(item);
+      saveAllEdits();
+    }
+    return cardEl;
+  }
+
+  function restoreTestiState(state){
+    testiState = { removed: (state && state.removed) || [], extras: (state && state.extras) || [] };
+    testiState.removed.forEach(function(avatarKey){
+      var thumb = document.querySelector('.pf-thumb[data-media-key="' + avatarKey + '"]');
+      if(thumb){
+        var cardEl = thumb.closest(".testi-card");
+        if(cardEl) cardEl.remove();
+      }
+    });
+    testiState.extras.forEach(function(item){
+      if(!document.querySelector('.pf-thumb[data-media-key="' + item.avatarKey + '"]')){
+        insertTestiCard(item, { silent: true });
+      }
+    });
+  }
+
+  var testiAddBtn = document.getElementById("testiAddBtn");
+  if(testiAddBtn){
+    testiAddBtn.addEventListener("click", function(){
+      var uid = "testix-" + Date.now();
+      insertTestiCard({
+        avatarKey: uid,
+        quoteKey: uid + "-quote",
+        nameKey: uid + "-name",
+        roleKey: uid + "-role",
+        quote: "Escribe aquí el testimonio del cliente.",
+        name: "Nombre Cliente",
+        role: "Cargo, Empresa"
+      });
+    });
+  }
+
+  if(testiGridEl){
+    testiGridEl.addEventListener("click", function(e){
+      var removeBtn = e.target.closest(".testi-card-remove");
+      if(!removeBtn) return;
+      if(!editing) return;
+      var cardEl = removeBtn.closest(".testi-card");
+      var thumb = cardEl.querySelector(".pf-thumb[data-media-key]");
+      var key = thumb && thumb.getAttribute("data-media-key");
+      if(!window.confirm("¿Quitar este testimonio?")) return;
+      cardEl.remove();
+      if(key){
+        mediaThumbs = mediaThumbs.filter(function(t){ return t !== thumb; });
+        delete mediaEdits[key];
+        testiState.extras = testiState.extras.filter(function(it){ return it.avatarKey !== key; });
+        if(testiState.removed.indexOf(key) === -1) testiState.removed.push(key);
+      }
+      saveAllEdits();
+    });
+  }
+
+  // ---------- AÑADIR / QUITAR MARCAS DEL CARRUSEL DE LOGOS ----------
+  var logosState = { removed: [], extras: [] };
+  var logosRowEl = document.getElementById("logosRowOriginal");
+
+  function wireLogoItemRemove(wrap, editableEl){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "logos-item-remove";
+    btn.title = "Quitar marca";
+    btn.textContent = "✕";
+    wrap.appendChild(btn);
+    btn.addEventListener("click", function(e){
+      e.stopPropagation();
+      if(!editing) return;
+      if(!window.confirm("¿Quitar esta marca del carrusel?")) return;
+      var key = editableEl.getAttribute("data-edit-key");
+      wrap.remove();
+      if(key){
+        logosState.extras = logosState.extras.filter(function(it){ return it.key !== key; });
+        if(logosState.removed.indexOf(key) === -1) logosState.removed.push(key);
+      }
+      syncLogosMarquee();
+      saveAllEdits();
+    });
+  }
+
+  function wrapLogoItem(el){
+    if(el.parentElement && el.parentElement.classList.contains("logos-item")) return;
+    var wrap = document.createElement("span");
+    wrap.className = "logos-item";
+    el.parentNode.insertBefore(wrap, el);
+    wrap.appendChild(el);
+    wireLogoItemRemove(wrap, el);
+  }
+
+  if(logosRowEl){
+    Array.prototype.slice.call(logosRowEl.children).forEach(function(el){
+      if(el.hasAttribute("data-editable")) wrapLogoItem(el);
+    });
+  }
+
+  function addLogoEntry(text, keyOverride, silent){
+    var key = keyOverride || ("logo-" + Date.now());
+    var div = document.createElement("div");
+    div.setAttribute("data-edit-key", key);
+    div.setAttribute("data-editable", "true");
+    div.innerHTML = text || "Nueva marca";
+    logosRowEl.appendChild(div);
+    wrapLogoItem(div);
+    editables.push(div);
+    div.setAttribute("contenteditable", editing ? "true" : "false");
+    div.addEventListener("input", function(){
+      clearTimeout(div._saveDebounce);
+      div._saveDebounce = setTimeout(saveAllEdits, 700);
+      syncLogosMarquee();
+    });
+    div.addEventListener("blur", saveAllEdits);
+    if(!silent){
+      logosState.extras.push({ key: key, text: text || "Nueva marca" });
+      syncLogosMarquee();
+      saveAllEdits();
+      div.focus();
+    }
+    return div;
+  }
+
+  var logosAddBtn = document.getElementById("logosAddBtn");
+  if(logosAddBtn){
+    logosAddBtn.addEventListener("click", function(){
+      addLogoEntry("Nueva marca");
+    });
+  }
+
+  function restoreLogosState(state){
+    logosState = { removed: (state && state.removed) || [], extras: (state && state.extras) || [] };
+    logosState.removed.forEach(function(key){
+      var el = logosRowEl.querySelector('[data-edit-key="' + key + '"]');
+      if(el){
+        var wrap = el.closest(".logos-item");
+        if(wrap) wrap.remove(); else el.remove();
+      }
+    });
+    logosState.extras.forEach(function(item){
+      if(!logosRowEl.querySelector('[data-edit-key="' + item.key + '"]')){
+        addLogoEntry(item.text, item.key, true);
+      }
+    });
+  }
+
+  // ---------- AÑADIR / QUITAR RECUADROS DEL PORTAFOLIO ----------
+  var portfolioState = { removed: [], extras: [] };
+  var pfMasonryEl = document.getElementById("pfMasonry");
+
+  function buildPortfolioItemHTML(item){
+    var ratioClass = { tall:"pf-r-tall", square:"pf-r-square", wide:"pf-r-wide", portrait:"pf-r-portrait" }[item.ratio] || "pf-r-square";
+    return (
+      '<div class="pf-item" data-pf-cat="' + (item.cat || "all") + '">' +
+        '<div class="pf-thumb ' + ratioClass + '" data-media-key="' + item.mediaKey + '">' +
+          '<div class="pf-media-edit">' +
+            '<input type="text" class="pf-media-input" placeholder="Link de foto o video (URL)">' +
+            '<button type="button" class="pf-media-save" title="Guardar">✓</button>' +
+            '<button type="button" class="pf-media-clear" title="Quitar">✕</button>' +
+          '</div>' +
+          '<div class="pf-glyph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5-9 9"></path></svg></div>' +
+          '<button type="button" class="pf-item-remove" title="Quitar recuadro">✕</button>' +
+          '<span class="pf-tag" data-edit-key="' + item.tagKey + '" data-editable="true">' + (item.tag || "Nuevo proyecto") + '</span>' +
+          '<div class="pf-overlay"><div><strong data-edit-key="' + item.titleKey + '" data-editable="true">' + (item.title || "Título del proyecto") + '</strong><span data-edit-key="' + item.subKey + '" data-editable="true">' + (item.subtitle || "Descripción breve") + '</span></div></div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function insertPortfolioItem(item, opts){
+    opts = opts || {};
+    var wrapper = document.createElement("div");
+    wrapper.innerHTML = buildPortfolioItemHTML(item);
+    var itemEl = wrapper.firstElementChild;
+    pfMasonryEl.appendChild(itemEl);
+
+    var thumb = itemEl.querySelector(".pf-thumb");
+    mediaThumbs.push(thumb);
+    wireMediaThumb(thumb);
+
+    Array.prototype.forEach.call(itemEl.querySelectorAll("[data-editable]"), function(el){
+      editables.push(el);
+    });
+
+    pfItems.push(itemEl);
+
+    if(!opts.silent){
+      portfolioState.extras.push(item);
+      saveAllEdits();
+    }
+    applyPfFilter(activePfFilter);
+    return itemEl;
+  }
+
+  function restorePortfolioState(state){
+    portfolioState = { removed: (state && state.removed) || [], extras: (state && state.extras) || [] };
+    portfolioState.removed.forEach(function(key){
+      var thumb = document.querySelector('.pf-thumb[data-media-key="' + key + '"]');
+      if(thumb){
+        var itemEl = thumb.closest(".pf-item");
+        if(itemEl){
+          pfItems = pfItems.filter(function(it){ return it !== itemEl; });
+          itemEl.remove();
+        }
+      }
+    });
+    portfolioState.extras.forEach(function(item){
+      insertPortfolioItem(item, { silent: true });
+    });
+  }
+
+  var pfAddBtn = document.getElementById("pfAddBtn");
+  var pfAddPicker = document.getElementById("pfAddPicker");
+  if(pfAddBtn && pfAddPicker){
+    pfAddBtn.addEventListener("click", function(e){
+      e.stopPropagation();
+      pfAddPicker.classList.toggle("open");
+    });
+    pfAddPicker.querySelectorAll("button[data-ratio]").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        var ratio = btn.getAttribute("data-ratio");
+        var uid = "pfx-" + Date.now();
+        insertPortfolioItem({
+          mediaKey: uid,
+          ratio: ratio,
+          cat: "all",
+          tagKey: uid + "-tag",
+          titleKey: uid + "-title",
+          subKey: uid + "-sub",
+          tag: "Nuevo proyecto",
+          title: "Título del proyecto",
+          subtitle: "Descripción breve"
+        });
+        pfAddPicker.classList.remove("open");
+      });
+    });
+    document.addEventListener("click", function(){ pfAddPicker.classList.remove("open"); });
+  }
+
+  if(pfMasonryEl){
+    pfMasonryEl.addEventListener("click", function(e){
+      var removeBtn = e.target.closest(".pf-item-remove");
+      if(!removeBtn) return;
+      if(!editing) return;
+      var itemEl = removeBtn.closest(".pf-item");
+      var thumb = itemEl.querySelector(".pf-thumb[data-media-key]");
+      var key = thumb && thumb.getAttribute("data-media-key");
+      if(!window.confirm("¿Quitar este recuadro del portafolio?")) return;
+      pfItems = pfItems.filter(function(it){ return it !== itemEl; });
+      itemEl.remove();
+      if(key){
+        mediaThumbs = mediaThumbs.filter(function(t){ return t !== thumb; });
+        delete mediaEdits[key];
+        portfolioState.extras = portfolioState.extras.filter(function(it){ return it.mediaKey !== key; });
+        if(portfolioState.removed.indexOf(key) === -1) portfolioState.removed.push(key);
+      }
+      saveAllEdits();
+    });
+  }
+
+  function wireMediaThumb(thumb){
     var key = thumb.getAttribute("data-media-key");
     var input = thumb.querySelector(".pf-media-input");
     var saveBtn = thumb.querySelector(".pf-media-save");
@@ -2216,7 +2727,8 @@
       moveDrag(t.clientX, t.clientY);
     }, { passive: true });
     thumb.addEventListener("touchend", function(){ endDrag(); });
-  });
+  }
+  mediaThumbs.forEach(wireMediaThumb);
 
   function showStatus(text, isError){
     sbStatus.textContent = text;
@@ -2229,6 +2741,15 @@
   }
 
   function applyData(dataObj){
+    if(dataObj.portfolioState){
+      restorePortfolioState(dataObj.portfolioState);
+    }
+    if(dataObj.logosState){
+      restoreLogosState(dataObj.logosState);
+    }
+    if(dataObj.testiState){
+      restoreTestiState(dataObj.testiState);
+    }
     editables.forEach(function(el){
       var key = el.getAttribute("data-edit-key");
       if(dataObj[key] !== undefined){
@@ -2389,6 +2910,9 @@
     data.media = mediaEdits;
     data.pfFilters = pfFilters;
     data.logoSettings = logoSettings;
+    data.portfolioState = portfolioState;
+    data.logosState = logosState;
+    data.testiState = testiState;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
@@ -2512,6 +3036,88 @@
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
+  });
+
+  // ---------- SIMULADOR DE PRECIOS (TARIFARIO) ----------
+  (function(){
+    var PRICE_VIDEO = 50000;
+    var PRICE_GRAPHIC = 16500;
+    var PRICE_ADS_MGMT = 200000;
+
+    var videos = 0, graphics = 0;
+    var videoStepper = document.querySelector("[data-sim-videos]");
+    var graphicStepper = document.querySelector("[data-sim-graphics]");
+    var adsMgmtCheck = document.getElementById("simAdsMgmt");
+    var totalMonthlyEl = document.getElementById("simTotalMonthly");
+
+    if(!videoStepper || !adsMgmtCheck) return;
+
+    function fmt(n){ return "$" + n.toLocaleString("es-CL"); }
+
+    function update(){
+      var monthly = videos * PRICE_VIDEO + graphics * PRICE_GRAPHIC + (adsMgmtCheck.checked ? PRICE_ADS_MGMT : 0);
+      totalMonthlyEl.textContent = fmt(monthly);
+    }
+
+    [videoStepper, graphicStepper].forEach(function(stepper){
+      var valEl = stepper.querySelector(".sim-step-val");
+      stepper.querySelectorAll(".sim-step-btn").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var delta = parseInt(btn.getAttribute("data-step"), 10);
+          var next = Math.max(0, parseInt(valEl.textContent, 10) + delta);
+          valEl.textContent = next;
+          if(stepper === videoStepper) videos = next;
+          if(stepper === graphicStepper) graphics = next;
+          update();
+        });
+      });
+    });
+
+    adsMgmtCheck.addEventListener("change", update);
+    update();
+  })();
+
+  // ---------- SELECTOR DE ÍCONOS PARA STATS ----------
+  var STAT_ICONS = {
+    image: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg>',
+    layers: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg>',
+    calendar: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg>',
+    award: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>',
+    briefcase: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><rect height="14" rx="2" width="20" x="2" y="7"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>',
+    building: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>',
+    megaphone: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+    target: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>',
+    trending: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><polyline points="3 17 9 11 13 15 21 6"></polyline><polyline points="14 6 21 6 21 13"></polyline></svg>',
+    users: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+    dollar: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><line x1="12" x2="12" y1="3" y2="21"></line><path d="M16 7.5c0-1.5-1.8-2.5-4-2.5s-4 1-4 2.5c0 1.5 1.5 2 4 2.5s4 1 4 2.5-1.8 2.5-4 2.5-4-1-4-2.5"></path></svg>',
+    check: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12.5 11 15.5 16 9"></polyline></svg>'
+  };
+  var STAT_ICON_ORDER = ["image","layers","calendar","award","briefcase","building","megaphone","target","trending","users","dollar","check"];
+
+  document.querySelectorAll(".stat-icon-wrap").forEach(function(wrap){
+    var toggle = wrap.querySelector(".stat-icon-toggle");
+    var picker = wrap.querySelector(".stat-icon-picker");
+    var iconEl = wrap.querySelector(".stat-icon");
+    STAT_ICON_ORDER.forEach(function(id){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.title = id;
+      btn.innerHTML = STAT_ICONS[id];
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        iconEl.innerHTML = STAT_ICONS[id];
+        picker.classList.remove("open");
+      });
+      picker.appendChild(btn);
+    });
+    toggle.addEventListener("click", function(e){
+      e.stopPropagation();
+      document.querySelectorAll(".stat-icon-picker.open").forEach(function(p){ if(p !== picker) p.classList.remove("open"); });
+      picker.classList.toggle("open");
+    });
+  });
+  document.addEventListener("click", function(){
+    document.querySelectorAll(".stat-icon-picker.open").forEach(function(p){ p.classList.remove("open"); });
   });
 
   loadFromSupabase();
