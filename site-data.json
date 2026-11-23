@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-23T22:00:03.000+00:00",
+ "updated_at": "2026-11-23T22:05:39.000+00:00",
  "data": {
   "media": {
    "pf-1": {
@@ -261,12 +261,17 @@
     {
      "key": "logo-1785534876031",
      "text": "Nueva marca"
+    },
+    {
+     "key": "logo-asfalmix",
+     "text": "ASFALMIX"
     }
    ],
    "removed": [
     "edit-60",
     "logo-1785534756295",
-    "logo-1785534374582"
+    "logo-1785534374582",
+    "edit-300"
    ]
   },
   "testiState": {
@@ -363,6 +368,7 @@
   "pfx-lma-ambulancia-sub": "LA MEDIAGENCIA",
   "pfx-lma-people-tag": "Contenido orgánico",
   "pfx-lma-people-title": "PEOPLE EXPERIENCE · RESUMEN",
-  "pfx-lma-people-sub": "LA MEDIAGENCIA"
+  "pfx-lma-people-sub": "LA MEDIAGENCIA",
+  "logo-asfalmix": "ASFALMIX"
  }
 }
