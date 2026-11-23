@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-08-23T21:05:35.571+00:00",
+ "updated_at": "2026-11-23T22:00:03.000+00:00",
  "data": {
   "media": {
    "pf-1": {
@@ -93,6 +93,26 @@
    "testi-3": {
     "url": "media/testi-3.jpeg",
     "type": "image"
+   },
+   "pfx-asfalmix-p6": {
+    "type": "video",
+    "url": "media/asfalmix-pregunta-6.mp4"
+   },
+   "pfx-asfalmix-residuos": {
+    "type": "video",
+    "url": "media/asfalmix-test-residuos.mp4"
+   },
+   "pfx-mdm-amsterdam": {
+    "type": "video",
+    "url": "media/mdm-amsterdam-recap.mp4"
+   },
+   "pfx-lma-ambulancia": {
+    "type": "video",
+    "url": "media/lma-chicureo-ambulancia.mp4"
+   },
+   "pfx-lma-people": {
+    "type": "video",
+    "url": "media/lma-people-experience.mp4"
    }
   },
   "edit-3": "Inicio",
@@ -264,9 +284,85 @@
    "navFontMobile": 11
   },
   "portfolioState": {
-   "extras": [],
+   "extras": [
+    {
+     "mediaKey": "pfx-lma-people",
+     "ratio": "portrait",
+     "cat": "brand",
+     "first": true,
+     "tagKey": "pfx-lma-people-tag",
+     "titleKey": "pfx-lma-people-title",
+     "subKey": "pfx-lma-people-sub",
+     "tag": "Contenido orgánico",
+     "title": "PEOPLE EXPERIENCE · RESUMEN",
+     "subtitle": "LA MEDIAGENCIA"
+    },
+    {
+     "mediaKey": "pfx-lma-ambulancia",
+     "ratio": "portrait",
+     "cat": "brand",
+     "first": true,
+     "tagKey": "pfx-lma-ambulancia-tag",
+     "titleKey": "pfx-lma-ambulancia-title",
+     "subKey": "pfx-lma-ambulancia-sub",
+     "tag": "Contenido orgánico",
+     "title": "CHICUREO AMBULANCIA",
+     "subtitle": "LA MEDIAGENCIA"
+    },
+    {
+     "mediaKey": "pfx-mdm-amsterdam",
+     "ratio": "portrait",
+     "cat": "brand",
+     "first": true,
+     "tagKey": "pfx-mdm-amsterdam-tag",
+     "titleKey": "pfx-mdm-amsterdam-title",
+     "subKey": "pfx-mdm-amsterdam-sub",
+     "tag": "Contenido orgánico",
+     "title": "ÁMSTERDAM · RECAP EMOCIONAL",
+     "subtitle": "MDM GLOBAL TRADING"
+    },
+    {
+     "mediaKey": "pfx-asfalmix-residuos",
+     "ratio": "portrait",
+     "cat": "brand",
+     "first": true,
+     "tagKey": "pfx-asfalmix-residuos-tag",
+     "titleKey": "pfx-asfalmix-residuos-title",
+     "subKey": "pfx-asfalmix-residuos-sub",
+     "tag": "Contenido orgánico",
+     "title": "TEST DE RESIDUOS",
+     "subtitle": "ASFALMIX"
+    },
+    {
+     "mediaKey": "pfx-asfalmix-p6",
+     "ratio": "portrait",
+     "cat": "brand",
+     "first": true,
+     "tagKey": "pfx-asfalmix-p6-tag",
+     "titleKey": "pfx-asfalmix-p6-title",
+     "subKey": "pfx-asfalmix-p6-sub",
+     "tag": "Contenido orgánico",
+     "title": "PREGUNTA 6",
+     "subtitle": "ASFALMIX"
+    }
+   ],
    "removed": []
   },
-  "logo-1785534876031": "LAMEDIAGENCIA"
+  "logo-1785534876031": "LAMEDIAGENCIA",
+  "pfx-asfalmix-p6-tag": "Contenido orgánico",
+  "pfx-asfalmix-p6-title": "PREGUNTA 6",
+  "pfx-asfalmix-p6-sub": "ASFALMIX",
+  "pfx-asfalmix-residuos-tag": "Contenido orgánico",
+  "pfx-asfalmix-residuos-title": "TEST DE RESIDUOS",
+  "pfx-asfalmix-residuos-sub": "ASFALMIX",
+  "pfx-mdm-amsterdam-tag": "Contenido orgánico",
+  "pfx-mdm-amsterdam-title": "ÁMSTERDAM · RECAP EMOCIONAL",
+  "pfx-mdm-amsterdam-sub": "MDM GLOBAL TRADING",
+  "pfx-lma-ambulancia-tag": "Contenido orgánico",
+  "pfx-lma-ambulancia-title": "CHICUREO AMBULANCIA",
+  "pfx-lma-ambulancia-sub": "LA MEDIAGENCIA",
+  "pfx-lma-people-tag": "Contenido orgánico",
+  "pfx-lma-people-title": "PEOPLE EXPERIENCE · RESUMEN",
+  "pfx-lma-people-sub": "LA MEDIAGENCIA"
  }
 }

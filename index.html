@@ -2471,7 +2471,8 @@
     var wrapper = document.createElement("div");
     wrapper.innerHTML = buildPortfolioItemHTML(item);
     var itemEl = wrapper.firstElementChild;
-    pfMasonryEl.appendChild(itemEl);
+    if(item.first && pfMasonryEl.firstElementChild) pfMasonryEl.insertBefore(itemEl, pfMasonryEl.firstElementChild);
+    else pfMasonryEl.appendChild(itemEl);
 
     var thumb = itemEl.querySelector(".pf-thumb");
     mediaThumbs.push(thumb);
@@ -2504,6 +2505,7 @@
       }
     });
     portfolioState.extras.forEach(function(item){
+      if(document.querySelector('.pf-thumb[data-media-key="' + item.mediaKey + '"]')) return; // ya existe
       insertPortfolioItem(item, { silent: true });
     });
   }
