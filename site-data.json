@@ -1,18 +1,10 @@
 {
- "updated_at": "2026-11-23T22:05:39.000+00:00",
+ "updated_at": "2026-11-23T22:10:33.000+00:00",
  "data": {
   "media": {
    "pf-1": {
     "url": "media/pf-1.mp4",
     "type": "video"
-   },
-   "pf-2": {
-    "pos": {
-     "x": 53.36574428026505,
-     "y": 51.869857933480574
-    },
-    "url": "media/pf-2.jpeg",
-    "type": "image"
    },
    "pf-3": {
     "pos": {
@@ -37,10 +29,6 @@
     },
     "url": "media/pf-6.jpeg",
     "type": "image"
-   },
-   "pf-7": {
-    "url": "media/pf-7.mp4",
-    "type": "video"
    },
    "pf-8": {
     "pos": {
@@ -311,7 +299,7 @@
      "titleKey": "pfx-lma-ambulancia-title",
      "subKey": "pfx-lma-ambulancia-sub",
      "tag": "Contenido orgánico",
-     "title": "CHICUREO AMBULANCIA",
+     "title": "PRO TIP AMBULANCIA",
      "subtitle": "LA MEDIAGENCIA"
     },
     {
@@ -323,7 +311,7 @@
      "titleKey": "pfx-mdm-amsterdam-title",
      "subKey": "pfx-mdm-amsterdam-sub",
      "tag": "Contenido orgánico",
-     "title": "ÁMSTERDAM · RECAP EMOCIONAL",
+     "title": "NO TENGAS MIEDO DE EQUIVOCARTE",
      "subtitle": "MDM GLOBAL TRADING"
     },
     {
@@ -347,24 +335,27 @@
      "titleKey": "pfx-asfalmix-p6-title",
      "subKey": "pfx-asfalmix-p6-sub",
      "tag": "Contenido orgánico",
-     "title": "PREGUNTA 6",
+     "title": "PREGUNTA Y RESPUESTA",
      "subtitle": "ASFALMIX"
     }
    ],
-   "removed": []
+   "removed": [
+    "pf-2",
+    "pf-7"
+   ]
   },
   "logo-1785534876031": "LAMEDIAGENCIA",
   "pfx-asfalmix-p6-tag": "Contenido orgánico",
-  "pfx-asfalmix-p6-title": "PREGUNTA 6",
+  "pfx-asfalmix-p6-title": "PREGUNTA Y RESPUESTA",
   "pfx-asfalmix-p6-sub": "ASFALMIX",
   "pfx-asfalmix-residuos-tag": "Contenido orgánico",
   "pfx-asfalmix-residuos-title": "TEST DE RESIDUOS",
   "pfx-asfalmix-residuos-sub": "ASFALMIX",
   "pfx-mdm-amsterdam-tag": "Contenido orgánico",
-  "pfx-mdm-amsterdam-title": "ÁMSTERDAM · RECAP EMOCIONAL",
+  "pfx-mdm-amsterdam-title": "NO TENGAS MIEDO DE EQUIVOCARTE",
   "pfx-mdm-amsterdam-sub": "MDM GLOBAL TRADING",
   "pfx-lma-ambulancia-tag": "Contenido orgánico",
-  "pfx-lma-ambulancia-title": "CHICUREO AMBULANCIA",
+  "pfx-lma-ambulancia-title": "PRO TIP AMBULANCIA",
   "pfx-lma-ambulancia-sub": "LA MEDIAGENCIA",
   "pfx-lma-people-tag": "Contenido orgánico",
   "pfx-lma-people-title": "PEOPLE EXPERIENCE · RESUMEN",
