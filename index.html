@@ -1838,58 +1838,6 @@
 </div>
 </div>
 </section>
-<section class="section" id="tarifario">
-<div class="wrap">
-<div class="eyebrow" data-edit-key="edit-200" data-editable="true">Precios</div>
-<div class="section-head">
-<h2 data-edit-key="edit-201" data-editable="true">Tarifario</h2>
-</div>
-<div class="pricing-sim">
-<div class="pricing-sim-header">
-<h3 data-edit-key="edit-310" data-editable="true">Arma tu plan a medida</h3>
-<p data-edit-key="edit-311" data-editable="true">Marca lo que necesitas y mira el precio estimado al instante.</p>
-</div>
-<div class="pricing-sim-body">
-<div class="sim-row">
-<div class="sim-row-label">
-<strong data-edit-key="edit-312" data-editable="true">Videos por mes</strong>
-<span data-edit-key="edit-313" data-editable="true">Grabación, guion y edición</span>
-</div>
-<div class="sim-stepper" data-sim-videos>
-<button type="button" class="sim-step-btn" data-step="-1">−</button>
-<span class="sim-step-val">0</span>
-<button type="button" class="sim-step-btn" data-step="1">+</button>
-</div>
-</div>
-<div class="sim-row">
-<div class="sim-row-label">
-<strong data-edit-key="edit-314" data-editable="true">Piezas gráficas por mes</strong>
-<span data-edit-key="edit-315" data-editable="true">Posts o stories</span>
-</div>
-<div class="sim-stepper" data-sim-graphics>
-<button type="button" class="sim-step-btn" data-step="-1">−</button>
-<span class="sim-step-val">0</span>
-<button type="button" class="sim-step-btn" data-step="1">+</button>
-</div>
-</div>
-<label class="sim-check-row">
-<input id="simAdsMgmt" type="checkbox">
-<div>
-<strong data-edit-key="edit-316" data-editable="true">Gestión de campaña Meta Ads (mensual)</strong>
-<span data-edit-key="edit-317" data-editable="true">$200.000/mes — la inversión en pauta publicitaria es aparte y se paga directo a Meta</span>
-</div>
-</label>
-</div>
-<div class="pricing-sim-total">
-<div class="sim-total-row">
-<span data-edit-key="edit-318" data-editable="true">Total mensual estimado</span>
-<strong id="simTotalMonthly">$0</strong>
-</div>
-</div>
-<a class="btn btn-primary sim-cta" href="https://wa.link/p1daz4" rel="noopener" target="_blank"><span data-edit-key="edit-319" data-editable="true">Cotizar por WhatsApp →</span></a>
-</div>
-</div>
-</section>
 <section class="section" id="testimonios">
 <div class="wrap">
 <div class="eyebrow" data-edit-key="edit-15" data-editable="true">Testimonios</div>
@@ -2767,6 +2715,7 @@
       applyLogoSettings(dataObj.logoSettings);
     }
     syncLogosMarquee();
+    if(window.__bindCounts) window.__bindCounts();
   }
 
   // ---------- HUINCHA DE MARCAS (loop infinito) ----------
@@ -2900,6 +2849,7 @@
 
   async function loadFromSupabase(){
     var okStatic = await loadStatic();
+    initCountUp(); // los números animados parten de la copia fija, sin esperar a Supabase
     try{
       var res = await withTimeout(
         supabaseClient.from(TABLE_NAME).select("data, updated_at").eq("id", ROW_ID).maybeSingle(),
@@ -2922,6 +2872,7 @@
 
   // ---------- GUARDADO EN SUPABASE ----------
   async function saveAllEdits(){
+    if(!editing) return; // los visitantes nunca escriben en Supabase
     var data = {};
     editables.forEach(function(el){
       var key = el.getAttribute("data-edit-key");
@@ -2963,6 +2914,7 @@
 
   function setEditing(on){
     editing = on;
+    if(on && window.__countFinish) window.__countFinish();
     body.classList.toggle("edit-mode", editing);
     toggleBtn.classList.toggle("active", editing);
     toggleBtn.textContent = editing ? "✓ Salir del modo edición" : "✎ Editar textos";
@@ -3058,45 +3010,6 @@
     }
   });
 
-  // ---------- SIMULADOR DE PRECIOS (TARIFARIO) ----------
-  (function(){
-    var PRICE_VIDEO = 50000;
-    var PRICE_GRAPHIC = 16500;
-    var PRICE_ADS_MGMT = 200000;
-
-    var videos = 0, graphics = 0;
-    var videoStepper = document.querySelector("[data-sim-videos]");
-    var graphicStepper = document.querySelector("[data-sim-graphics]");
-    var adsMgmtCheck = document.getElementById("simAdsMgmt");
-    var totalMonthlyEl = document.getElementById("simTotalMonthly");
-
-    if(!videoStepper || !adsMgmtCheck) return;
-
-    function fmt(n){ return "$" + n.toLocaleString("es-CL"); }
-
-    function update(){
-      var monthly = videos * PRICE_VIDEO + graphics * PRICE_GRAPHIC + (adsMgmtCheck.checked ? PRICE_ADS_MGMT : 0);
-      totalMonthlyEl.textContent = fmt(monthly);
-    }
-
-    [videoStepper, graphicStepper].forEach(function(stepper){
-      var valEl = stepper.querySelector(".sim-step-val");
-      stepper.querySelectorAll(".sim-step-btn").forEach(function(btn){
-        btn.addEventListener("click", function(){
-          var delta = parseInt(btn.getAttribute("data-step"), 10);
-          var next = Math.max(0, parseInt(valEl.textContent, 10) + delta);
-          valEl.textContent = next;
-          if(stepper === videoStepper) videos = next;
-          if(stepper === graphicStepper) graphics = next;
-          update();
-        });
-      });
-    });
-
-    adsMgmtCheck.addEventListener("change", update);
-    update();
-  })();
-
   // ---------- SELECTOR DE ÍCONOS PARA STATS ----------
   var STAT_ICONS = {
     image: '<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg>',
@@ -3139,6 +3052,96 @@
   document.addEventListener("click", function(){
     document.querySelectorAll(".stat-icon-picker.open").forEach(function(p){ p.classList.remove("open"); });
   });
+
+  // ---------- NÚMEROS ANIMADOS (de 0 al valor final al entrar en pantalla) ----------
+  // Funciona sobre el texto actual de cada cifra (.stat-num y métricas de casos), así que
+  // sigue valiendo si cambias los números desde el modo edición o site-data.json.
+  var countItems = [];
+  var countDone = false;
+
+  function parseCountNode(node){
+    var m = node.textContent.match(/(\d{1,3}(?:[.,]\d{3})+|\d+[.,]\d+|\d+)/);
+    if(!m) return null;
+    var raw = m[1], idx = m.index, kind, sep = "", dec = 0, value;
+    if(/^\d{1,3}([.,]\d{3})+$/.test(raw)){
+      kind = "thousands"; sep = raw.charAt(raw.search(/[.,]/));
+      value = parseInt(raw.replace(/[.,]/g, ""), 10);
+    } else if(/[.,]/.test(raw)){
+      kind = "decimal"; sep = raw.charAt(raw.search(/[.,]/));
+      dec = raw.length - raw.search(/[.,]/) - 1;
+      value = parseFloat(raw.replace(",", "."));
+    } else {
+      kind = "int"; value = parseInt(raw, 10);
+    }
+    return { node: node, final: node.textContent, pre: node.textContent.slice(0, idx),
+             post: node.textContent.slice(idx + raw.length), kind: kind, sep: sep, dec: dec, value: value };
+  }
+
+  function fmtCount(it, v){
+    var s;
+    if(it.kind === "decimal") s = v.toFixed(it.dec).replace(".", it.sep);
+    else {
+      s = String(Math.round(v));
+      if(it.kind === "thousands") s = s.replace(/\B(?=(\d{3})+(?!\d))/g, it.sep);
+    }
+    return it.pre + s + it.post;
+  }
+
+  function finishCounts(){
+    countDone = true;
+    countItems.forEach(function(it){ it.node.textContent = it.final; it.done = true; });
+  }
+  window.__countFinish = finishCounts;
+
+  function runCount(el){
+    el._counted = true;
+    var its = el._countItems || [];
+    var start = null, dur = 1800;
+    its.forEach(function(it){ it.node.textContent = fmtCount(it, 0); });
+    function step(ts){
+      if(countDone) return;
+      if(start === null) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      var e = 1 - Math.pow(1 - t, 3);
+      its.forEach(function(it){ it.node.textContent = t < 1 ? fmtCount(it, it.value * e) : it.final; });
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var countIO = null;
+
+  // Se vuelve a llamar cada vez que applyData() reemplaza los textos (copia fija o Supabase),
+  // así las cifras que aún no se animaron siempre parten del valor vigente.
+  function bindCounts(){
+    if(!countIO) return;
+    Array.prototype.forEach.call(document.querySelectorAll(".stat-num, .case-metrics strong"), function(el){
+      if(el._counted) return;
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      var n, it = null;
+      while((n = walker.nextNode())){ it = parseCountNode(n); if(it) break; }
+      if(!it) return;
+      countItems = countItems.filter(function(x){ return x.node.isConnected; });
+      countItems.push(it);
+      el._countItems = [it];
+      it.node.textContent = fmtCount(it, 0); // arranca en 0
+      countIO.observe(el);
+    });
+  }
+
+  function initCountUp(){
+    if(editing || window.__countInit) return;
+    if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if(!("IntersectionObserver" in window)) return;
+    window.__countInit = true;
+    countIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ countIO.unobserve(en.target); if(!editing) runCount(en.target); }
+      });
+    }, { threshold: 0.6 });
+    bindCounts();
+  }
+  window.__bindCounts = bindCounts;
 
   loadFromSupabase();
 })();
