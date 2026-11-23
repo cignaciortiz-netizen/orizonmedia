@@ -1,18 +1,35 @@
-name: Supabase Keep Alive
+name: Supabase Keep Alive + Backup
 
 on:
   schedule:
     - cron: '0 9 * * 1'  # lunes 9:00 UTC
-    - cron: '0 9 * * 5'  # viernes 9:00 UTC
+    - cron: '0 9 * * 4'  # jueves 9:00 UTC
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
-  ping:
+  ping-and-backup:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase
+      - uses: actions/checkout@v4
+
+      - name: Ping Supabase y guardar copia de seguridad
+        env:
+          SB_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          curl -s -o /dev/null -w "%{http_code}" \
-          "https://ijsryhztprmwawkhnezn.supabase.co/rest/v1/site_edits?select=id&id=eq.main" \
-          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+          mkdir -p backup
+          curl -sS --fail --max-time 30 \
+            "https://ijsryhztprmwawkhnezn.supabase.co/rest/v1/site_edits?select=id,updated_at,data&id=eq.main" \
+            -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" \
+            -o backup/site_edits_latest.json
+
+      # El commit de la copia cuenta como actividad del repo: evita que GitHub
+      # desactive este workflow por inactividad (pasa a los 60 días sin commits).
+      - name: Guardar copia en el repo si cambió
+        run: |
+          git config user.name "backup-bot"
+          git config user.email "backup-bot@users.noreply.github.com"
+          git add backup/site_edits_latest.json
+          git diff --cached --quiet || git commit -m "Copia de seguridad de Supabase" && git push || true

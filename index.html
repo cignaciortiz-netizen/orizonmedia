@@ -2871,32 +2871,52 @@
   }
 
   // ---------- CARGA DESDE SUPABASE ----------
-  async function loadFromSupabase(){
+  // La página SIEMPRE se arma primero con site-data.json (copia fija en el repo).
+  // Supabase solo se consulta después, con límite de tiempo, y solo se aplica si
+  // tiene ediciones más nuevas que la copia fija. Si Supabase está caído o pausado,
+  // la página se ve completa igual y no muestra errores a los visitantes.
+  var staticUpdatedAt = "";
+
+  function withTimeout(promise, ms){
+    return Promise.race([
+      promise,
+      new Promise(function(_, reject){ setTimeout(function(){ reject(new Error("timeout")); }, ms); })
+    ]);
+  }
+
+  async function loadStatic(){
     try{
-      var res = await supabaseClient
-        .from(TABLE_NAME)
-        .select("data")
-        .eq("id", ROW_ID)
-        .maybeSingle();
+      var r = await fetch("site-data.json", { cache: "no-cache" });
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      var j = await r.json();
+      staticUpdatedAt = j.updated_at || "";
+      applyData(j.data || {});
+      return true;
+    }catch(e){
+      console.error("No se pudo cargar site-data.json:", e);
+      return false;
+    }
+  }
 
-      if(res.error){
-        console.error("Supabase load error:", res.error);
-        applyData(loadLocalCache()); // fallback offline
-        showStatus("Sin conexión a Supabase, mostrando copia local", true);
-        return;
-      }
-
+  async function loadFromSupabase(){
+    var okStatic = await loadStatic();
+    try{
+      var res = await withTimeout(
+        supabaseClient.from(TABLE_NAME).select("data, updated_at").eq("id", ROW_ID).maybeSingle(),
+        6000
+      );
+      if(res.error) throw res.error;
       if(res.data && res.data.data){
-        applyData(res.data.data);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(res.data.data));
-      } else {
-        // No hay fila aún en Supabase: usar caché local si existe
-        applyData(loadLocalCache());
+        var newer = !staticUpdatedAt || (res.data.updated_at && new Date(res.data.updated_at) > new Date(staticUpdatedAt));
+        if(newer){
+          applyData(res.data.data);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(res.data.data));
+        }
       }
     }catch(e){
-      console.error("Supabase load exception:", e);
-      applyData(loadLocalCache());
-      showStatus("Sin conexión a Supabase, mostrando copia local", true);
+      console.warn("Supabase no disponible (la página usa la copia fija):", e);
+      if(!okStatic) applyData(loadLocalCache()); // último recurso
+      if(editing) showStatus("Sin conexión a Supabase: los cambios se guardan solo en este navegador", true);
     }
   }
 

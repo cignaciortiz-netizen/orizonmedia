@@ -1,0 +1,272 @@
+{
+ "updated_at": "2026-08-23T21:05:35.571+00:00",
+ "data": {
+  "media": {
+   "pf-1": {
+    "url": "media/pf-1.mp4",
+    "type": "video"
+   },
+   "pf-2": {
+    "pos": {
+     "x": 53.36574428026505,
+     "y": 51.869857933480574
+    },
+    "url": "media/pf-2.jpeg",
+    "type": "image"
+   },
+   "pf-3": {
+    "pos": {
+     "x": 50,
+     "y": 50
+    },
+    "url": "media/pf-3.jpeg",
+    "type": "image"
+   },
+   "pf-4": {
+    "url": "media/pf-4.mp4",
+    "type": "video"
+   },
+   "pf-5": {
+    "url": "media/pf-5.mp4",
+    "type": "video"
+   },
+   "pf-6": {
+    "pos": {
+     "x": 76.92595424212035,
+     "y": 89.64098818978829
+    },
+    "url": "media/pf-6.jpeg",
+    "type": "image"
+   },
+   "pf-7": {
+    "url": "media/pf-7.mp4",
+    "type": "video"
+   },
+   "pf-8": {
+    "pos": {
+     "x": 60.84517601418736,
+     "y": 53.9890301063398
+    },
+    "url": "media/pf-8.jpeg",
+    "type": "image"
+   },
+   "case-1": {
+    "pos": {
+     "x": 50,
+     "y": 2.1409197013621863
+    },
+    "url": "media/case-1.jpeg",
+    "type": "image"
+   },
+   "case-2": {
+    "pos": {
+     "x": 53.04656396053315,
+     "y": 26.070459850681093
+    },
+    "url": "media/case-2.jpeg",
+    "type": "image"
+   },
+   "case-3": {
+    "pos": {
+     "x": 51.66170457582364,
+     "y": 6.57231602531013
+    },
+    "url": "media/case-3.jpeg",
+    "type": "image"
+   },
+   "hero-1": {
+    "url": "hero.mp4",
+    "size": {
+     "h": 300,
+     "w": 551
+    },
+    "type": "video"
+   },
+   "testi-1": {
+    "url": "media/testi-1.jpeg",
+    "type": "image"
+   },
+   "testi-2": {
+    "url": "media/testi-2.jpeg",
+    "type": "image"
+   },
+   "testi-3": {
+    "url": "media/testi-3.jpeg",
+    "type": "image"
+   }
+  },
+  "edit-3": "Inicio",
+  "edit-4": "Casos de Éxito",
+  "edit-5": "Servicios",
+  "edit-6": "Portafolio",
+  "edit-7": "Clientes",
+  "edit-8": "Testimonios",
+  "edit-9": "Contacto",
+  "edit-10": "Hablemos",
+  "edit-11": "Marketing digital para pymes",
+  "edit-12": "Casos de éxito",
+  "edit-13": "Qué hacemos",
+  "edit-14": "algunas marcas que confiaron en nosotros",
+  "edit-15": "Testimonios",
+  "edit-16": "¿Listo para potenciar tu negocio?",
+  "edit-17": "Contenido que&nbsp;<span style=\"color: rgb(45, 224, 194); letter-spacing: -0.58px;\">conecta</span>,<div>anuncios que<br><div><div><span class=\"accent\">venden.</span></div></div></div>",
+  "edit-18": "Resultados que hablan por sí solos",
+  "edit-19": "Servicios",
+  "edit-20": "Lo que dicen nuestros clientes",
+  "edit-21": "Hablemos de<br>tus <span class=\"accent\" style=\"color:var(--teal);\">objetivos</span>",
+  "edit-22": "trax tires&nbsp;",
+  "edit-23": "MDM Global Trade",
+  "edit-24": "pistachos rbs",
+  "edit-25": "Contenido digital",
+  "edit-26": "PUBLICIDAD DIGITAL",
+  "edit-31": "Concreta las ventas que tu negocio merece con un sistema que une contenido y publicidad en tus redes sociales.",
+  "edit-33": "<br>",
+  "edit-34": "<span class=\"tag-dot\">●</span> Meta Ads",
+  "edit-35": "<span class=\"tag-dot\">▲</span> TikTok Ads",
+  "edit-36": "<span class=\"tag-dot\">◐</span>Contenido para redes sociales",
+  "edit-37": "<span class=\"tag-dot\">◆</span> Branding",
+  "edit-38": "<span class=\"tag-dot\">▣</span> Video Ads",
+  "edit-41": " Trax Tires —tienda especializada en llantas, neumáticos y suspensión 4x4—, enfrentaba baja demanda y ventas estancadas. Con campañas en Meta Ads y creatividades a medida, hoy se posiciona como referente en su rubro y logrando un flujo sostenido de nuevos clientes desde 2023.\"",
+  "edit-42": "Diego De La Puente, buscaba exponer su marca especializada en importaciones de productos desde China. Con campañas de interacción y contenido creativo, fortalecimos su reconocimiento y generamos un flujo constante de nuevas oportunidades comerciales.",
+  "edit-43": "Pistachos RBS necesitaba vender rápido toda su cosecha antes de que perdiera valor. Con campañas en Meta Ads orientadas a ventas por WhatsApp, logramos liquidar la totalidad de su producción en solo 3 semanas.",
+  "edit-44": "<label>LEADS TOTALES GENERADOS</label><strong>+4.000</strong>",
+  "edit-45": "<label>campañas activas desde</label><strong>2023</strong>",
+  "edit-46": "<label>INCREMENTO DE VENTAS (2025)</label><strong>+380%</strong>",
+  "edit-47": "<label>leads generados</label><strong>+480</strong>",
+  "edit-48": "<label>personas alcanzadas</label><strong>+290.000</strong>",
+  "edit-49": "<label>piezas de contenido</label><label><strong>+60</strong></label>",
+  "edit-50": "<label>Leads</label><strong>+260</strong>",
+  "edit-51": "<label>stock vendido al&nbsp;</label><strong>100%</strong>",
+  "edit-52": "<label>CTR PROMEDIO EN CAMPAÑAS</label><strong>+2%</strong>",
+  "edit-53": "Creamos contenido de alto impacto para tus redes sociales, produciendo gráficas y piezas audiovisuales con un proceso planificado para reflejar tu marca con coherencia y calidad.",
+  "edit-54": "Creamos y gestionamos campañas digitales en Google y Meta Ads, diseñando anuncios estratégicos con segmentación precisa y optimización constante para lograr resultados medibles.",
+  "edit-59": "PISTACHOS RBS",
+  "edit-60": "MDM",
+  "edit-61": "TRAX TIRES",
+  "edit-62": "BOETSCH INMOBILIARIA",
+  "edit-63": "SEPCO GRUPO INMOBILIARIO",
+  "edit-64": "EL REMANSO",
+  "edit-65": "FLY",
+  "edit-66": "<div>\"Desde que comencé a trabajar con Carlos y su equipo mis ventas mejoraron considerablemente a lo largo de los últimos 2 años.&nbsp;</div><div><br></div><div>No solo entrega buenos resultados, sino que también explica con claridad cada cambio u oportunidad de mejora en cada campaña.</div><div><br></div><div>Estoy tremendamente satisfecho con su calidad como profesional.\"</div>",
+  "edit-67": "<p><span style=\"white-space: pre-wrap;\">\"He trabajado con mucha gente alrededor del mundo y si puedo destacar dos cosas de Carlos y su equipo, son la profesionalidad y la honestidad.</span></p><p><span style=\"white-space: pre-wrap;\">Lo que más valoro es que realmente entienden el negocio y saben cómo guiarte. Me ayudaron a enfocar mejor mis servicios de importación desde China, lo que se tradujo en mejores clientes y menos tiempo perdido en consultas que no llegaban a nada.</span></p><p><span style=\"white-space: pre-wrap;\">Los recomiendo totalmente.\"</span></p>",
+  "edit-68": "<p><span style=\"white-space: pre-wrap;\">\"Con más de 50 años, pensé que las redes sociales no eran para mí.</span></p><p><span style=\"white-space: pre-wrap;\">Orizon me acompañó desde cero y el resultado fue increíble: vendí toda mi cosecha en pocas semanas.</span></p><p><span style=\"white-space: pre-wrap;\">Un equipo que realmente transforma negocios.\"</span></p><div></div>",
+  "edit-69": "Pablo Sotomayor<br>",
+  "edit-70": "Diego De La Puente",
+  "edit-71": "Roberto Brusonni",
+  "edit-72": "CEO, Trax Tires<br>",
+  "edit-73": "CEO, MDM",
+  "edit-74": "Propietario, Pistachos RBS",
+  "edit-75": "Cuéntanos tu proyecto y te ayudaremos a diseñar una estrategia que genere resultados a través de tus redes sociales.",
+  "edit-76": "<br>",
+  "edit-79": "© 2026 Orizon Media. Todos los derechos reservados.",
+  "edit-80": "\n<a href=\"#\">Políticas de privacidad</a>\n<a href=\"#\">Términos y condiciones</a>\n",
+  "edit-81": "\n<a href=\"#\">f</a>\n<a href=\"#\">📷</a>\n<a href=\"#\">♪</a>\n<a href=\"#\">in</a>\n",
+  "edit-90": "Trabajo reciente",
+  "edit-91": "Portafolio",
+  "edit-92": "<br>",
+  "edit-93": "meta ads",
+  "edit-94": "TRIPLE PACK PROMO",
+  "edit-95": "Trax Tires",
+  "edit-96": "META ADS",
+  "edit-97": "IMPORTA SIN COMPLICACIONES<br>",
+  "edit-98": "MDM GLOBAL TRADING",
+  "edit-99": "contenido orgánico",
+  "edit-100": "NUEVO MODELO DE CASA",
+  "edit-101": "SEPGO GRUPO INMOBILIARIO",
+  "edit-102": "Contenido orgánico",
+  "edit-103": "CONSTRUCCIÓN TERRARIO",
+  "edit-104": "TERRATEPUY",
+  "edit-105": "meta ads",
+  "edit-106": "<span data-edit-key=\"edit-94\" data-editable=\"true\" style=\"display: block; font-size: 13px; letter-spacing: 0.01em; outline: rgb(45, 224, 194) solid 1.6px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: rgb(244, 246, 246);\">TRIPLE PACK PROMO</span>",
+  "edit-107": "<span style=\"color: rgb(147, 160, 160); letter-spacing: 0.22px;\">Trax Tires</span>",
+  "edit-108": "contenido orgánico",
+  "edit-109": "TERRARIO TEMÁTICO<br>",
+  "edit-110": "TERRATEPUY",
+  "edit-111": "CONTENIDO ORGÁNICO",
+  "edit-112": "FERIA DE CANTÓN",
+  "edit-113": "<span style=\"color: rgb(147, 160, 160); letter-spacing: 0.22px;\">MDM GLOBAL TRADING</span>",
+  "edit-114": "Meta Ads",
+  "edit-115": "COSECHA 2026<br>",
+  "edit-116": "PISTACHOS RBS",
+  "edit-117": "<svg fill=\"none\" height=\"22\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.6\" viewBox=\"0 0 24 24\" width=\"22\"><path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\"></path><path d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"></path><path d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"></path></svg>",
+  "edit-118": "+600",
+  "edit-119": "piezas de contenido",
+  "edit-120": "generadas para clientes",
+  "edit-121": "<svg fill=\"none\" height=\"22\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.6\" viewBox=\"0 0 24 24\" width=\"22\"><path d=\"m3 11 18-5v12L3 14v-3z\"></path><path d=\"M11.6 16.8a3 3 0 1 1-5.8-1.6\"></path></svg>",
+  "edit-122": "+5&nbsp;",
+  "edit-123": "AÑOS DE EXPERIENCIA",
+  "edit-124": "en el rubro",
+  "edit-125": "<svg fill=\"none\" height=\"22\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.6\" viewBox=\"0 0 24 24\" width=\"22\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg>",
+  "edit-126": "+15",
+  "edit-127": "marcas trabajadas",
+  "edit-128": "en diferentes industrias",
+  "edit-129": "<svg fill=\"none\" height=\"22\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.6\" viewBox=\"0 0 24 24\" width=\"22\"><path d=\"m3 11 18-5v12L3 14v-3z\"></path><path d=\"M11.6 16.8a3 3 0 1 1-5.8-1.6\"></path></svg>",
+  "edit-130": "+50",
+  "edit-131": "CAMPAÑAS&nbsp;",
+  "edit-132": "digitales completadas",
+  "edit-133": "E-COMMERCE",
+  "edit-134": "E-COMMERCE",
+  "edit-135": "SERVICIOS",
+  "edit-200": "Precios",
+  "edit-201": "Tarifario",
+  "edit-300": "TRAX TIRES",
+  "edit-301": "MDM GLOBAL TRADE",
+  "edit-302": "TERRATEPUY",
+  "edit-310": "Arma UN PLAN A TU MEDIDA",
+  "edit-311": "Marca lo que necesitas y mira el precio estimado al instante.",
+  "edit-312": "Audiovisual",
+  "edit-313": "Creación de videos para redes, contempla: redacción de guion,&nbsp;<span style=\"color: rgb(93, 106, 106); display: inline !important;\">grabación</span>&nbsp;y edición.",
+  "edit-314": "Piezas gráficas",
+  "edit-315": "Creación de posts y/o stories para tu negocio según tus indicaciones.",
+  "edit-316": "Gestión de campaña Meta Ads (mensual)",
+  "edit-317": "Importante:&nbsp;la inversión en pauta publicitaria es aparte y se paga directo a Meta",
+  "edit-318": "Total estimado",
+  "edit-319": "Cotizar por WhatsApp →",
+  "pfFilters": [
+   {
+    "id": "all",
+    "label": "Todo"
+   },
+   {
+    "id": "meta",
+    "label": "Meta Ads"
+   },
+   {
+    "id": "brand",
+    "label": "contenido orgánico"
+   }
+  ],
+  "logosState": {
+   "extras": [
+    {
+     "key": "logo-1785534876031",
+     "text": "Nueva marca"
+    }
+   ],
+   "removed": [
+    "edit-60",
+    "logo-1785534756295",
+    "logo-1785534374582"
+   ]
+  },
+  "testiState": {
+   "extras": [],
+   "removed": [
+    "testix-1785535858392"
+   ]
+  },
+  "logoSettings": {
+   "navFont": 12.5,
+   "heroLogo": 212,
+   "logoSize": 37,
+   "heroTitleMax": 42,
+   "heroTitleMin": 33,
+   "navFontMobile": 11
+  },
+  "portfolioState": {
+   "extras": [],
+   "removed": []
+  },
+  "logo-1785534876031": "LAMEDIAGENCIA"
+ }
+}
